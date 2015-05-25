@@ -1,0 +1,12 @@
+@import "globals/mixins";
+
+.docs-prevnext {
+  margin: 20px 0;
+  @include clearfix;
+}
+.docs-prev {
+  float: left;
+}
+.docs-next {
+  float: right;
+}

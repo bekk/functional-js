@@ -1,0 +1,26 @@
+# Site settings
+title: Functional JavaScript Workshop
+description: Workshop for teaching Functional Programming with JavaScript
+baseurl: "/functional-js" # the subpath of your site, e.g. /blog/
+url: "http://bekkopen.github.io/" # the base hostname & protocol for your site
+
+version: 3.1.0
+
+# Build settings
+markdown: kramdown
+
+exclude:
+ - node_modules
+
+collections:
+  workshop:
+    output: true
+    output_ext: html
+    collection: workshop
+    permalink: /workshop/:path/
+
+permalink: pretty
+
+kramdown:
+  input: GFM
+  hard_wrap: false

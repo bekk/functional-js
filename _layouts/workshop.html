@@ -1,0 +1,76 @@
+<html>
+  {% include head.html %}
+  <body>
+    <a class="anchor-link" id="content"></a>
+    <main class="mainContent playground" >
+      <h1>Workshop: {{page.title}}</h1>
+
+      {% if page.slides %}
+        <p>See related slides for this part: <a href="{{page.slides}}">{{page.slides}}</a></p>
+      {% endif %}
+
+      <div class="docs-prevnext">
+        {% if page.prev %}
+          <a class="docs-prev" href="{{site.baseurl}}/{{ page.collection }}/{{ page.prev }}">&larr; Previous task</a>
+        {% endif %}
+        {% if page.next %}
+          <a class="docs-next" href="{{site.baseurl}}/{{ page.collection }}/{{ page.next }}">Next task &rarr;</a>
+        {% endif %}
+      </div>
+
+      <div class="editor" data-is-large=true><textarea>{{ content }}</textarea></div>
+
+      <h2>Tasks</h2>
+      <ol>
+      {% for item in site.workshop %}
+      {% if item.hide != true %}
+        {% assign pageID = page.name %}
+        {% assign itemID = item.name %}
+        {% assign className = pageID == itemID ? ' class="active"' : '' %}
+          <li>
+            {% if item.start == true %}
+            <a href="{{site.baseurl}}/{{item["collection"]}}/" {{className}}>
+            {% else %}
+            <a href="{{site.baseurl}}/{{item["collection"]}}/{{itemID}}" {{className}}>
+            {% endif %}
+              {% if item["section"] %}<strong>Part {{item["section"]}}</strong>: {% endif %}
+              {{item["title"]}}
+            </a>
+            {% if pageID == itemID %}<em>[Active]</em>{% endif %}
+          </li>
+      {% endif %}
+      {% endfor %}
+      </ol>
+
+      <div class="docs-prevnext">
+        {% if page.prev %}
+          <a class="docs-prev" href="/{{ page.collection }}/{{ page.prev }}">&larr; Previous task</a>
+        {% endif %}
+        {% if page.next %}
+          <a class="docs-next" href="/{{ page.collection }}/{{ page.next }}">Next task &rarr;</a>
+        {% endif %}
+      </div>
+
+      <h2>Help</h2>
+
+      <h3>Available globals</h3>
+      <ul>
+        <li><code>_</code>: Lodash</li>
+        <li><code>log</code>: log-command that logs to view and console</li>
+      </ul>
+
+      <h3>Testing</h3>
+      <ul>
+        <li><code>describe</code>: new test suite (mocha)</li>
+        <li><code>it</code>: new test (mocha)</li>
+        <li><code>xit</code>: pending test (mocha)</li>
+        <li><code>xdescribe</code>: pending scenario (mocha)</li>
+        <li><code>before/after</code>: run code before or after all tests (mocha)</li>
+        <li><code>beforeEach/afterEach</code>: run code before or after each tests (mocha)</li>
+        <li><code>chai</code>: chai.js assertion library</li>
+      </ul>
+
+    </main>
+    {% include footer.html %}
+  </body>
+</html>

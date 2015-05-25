@@ -1,0 +1,87 @@
+@import "./globals/mixins";
+@import "./globals/colors";
+
+.mainContent {
+  @include width-constraint;
+  margin-top: 30px;
+  display: block;
+
+  &.playground {
+    @include width-constraint-large;
+  }
+}
+
+.mainContent h1,
+.mainContent h2,
+.mainContent h3 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  font-weight: 100;
+  position: relative;
+  word-wrap: break-word;
+
+  color: $color-organge-normal;
+}
+.mainContent h1 {
+  margin-top: 50px;
+  margin-top: 0;
+}
+.mainContent h2 {
+  font-size: 1.5rem;
+}
+.mainContent h3 {
+  font-size: 1.4rem;
+}
+
+.mainContent p {
+  line-height: 1.7rem;
+}
+
+.mainContent table {
+  width: 100%;
+  margin: 10px 0;
+  background: $color-table-white;
+
+  td, th {
+    padding: 5px;
+  }
+
+  tr:nth-child(odd) td {
+    background: $color-table-zebra;
+  }
+}
+
+
+.playground h1,
+.playground h2,
+.playground h3 {
+  margin-top: 1rem;
+}
+
+.mainContent p {
+  margin-bottom: 20px;
+}
+
+.mainContent img {
+  max-width: 100%;
+}
+
+.edit-page-link {
+  position: absolute;
+  top: -0.8rem;
+  right: 0;
+  font-size: 0.7rem;
+}
+
+.fromMarkdown pre code {
+  margin-bottom: 30px;
+}
+
+p img {
+  background: #fff;
+}
+
+.column ul,
+.column ol {
+  margin: 20px 0;
+}

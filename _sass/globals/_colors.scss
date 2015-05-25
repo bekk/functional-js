@@ -1,0 +1,38 @@
+// Color palette
+$color-blue-darkest: #2C3E50;
+$color-blue-dark: #2980B9;
+$color-blue-normal: #3498DB;
+$color-blue-light: #0EC2DB;
+$color-organge-normal: #E74C3C;
+
+$color-omniscient-blue: #0098C6;
+
+$color-white-bg: #fafafa;
+$color-darkGray-background: $color-white-bg;
+$color-white-fontColor: #2d2d2d;
+
+$color-header-border: $color-blue-light;
+$color-header-background: $color-omniscient-blue;
+$color-header-background--bottom: lighten($color-blue-darkest, 10%);
+$color-header-background--small: $color-omniscient-blue;
+
+$color-header-linkColor: $color-white-bg;
+
+
+// Graph colors:
+
+$color-topNode: $color-blue-darkest;
+
+$color-infoBoxes: $color-white-bg;
+
+$color-leftNav: $color-blue-darkest;
+$color-leftNav-header: $color-blue-darkest;
+
+$color-table-white: #fff;
+$color-table-zebra: lighten($color-organge-normal, 40%);
+
+// Links
+
+$color-links: $color-blue-normal;
+$color-links--hover: darken($color-links, 15%);
+$color-links--active: darken($color-links, 25%);

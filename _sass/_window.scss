@@ -1,0 +1,132 @@
+.CodeMirror {
+  z-index: 0;
+  padding-bottom: 0.5rem;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.CodeMirror,
+.inner--result {
+  font-size: 1rem;
+}
+.window .CodeMirror-lines {
+  padding: 0;
+  padding-left: 0.4rem;
+}
+
+.playground {
+
+  .window .CodeMirror-lines {
+    padding: 0;
+  }
+
+  .CodeMirror {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 3px;
+  }
+
+  .CodeMirror-line-numbers {
+    font-size: 0.2rem;
+  }
+
+  .CodeMirror,
+  .inner--result {
+    font-size: 1.15rem;
+  }
+
+  .window {
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  .control {
+    flex: 1 100%;
+  }
+  .inner--code {
+    flex: 1 65%;
+  }
+  .inner--result {
+    flex: 1 35%;
+  }
+}
+
+$color-error: #f25156;
+$color-success: #4ca73c;
+$color-pending: #f7ac3c;
+
+.test-summary {
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.editor-pending {
+  color: $color-pending;
+}
+.editor-success {
+  color: $color-success;
+}
+
+.editor > .inner > textarea {
+  display: none;
+}
+.editor-error {
+  color: $color-error;
+  pre {
+    font-size: 12px;
+    white-space: pre-wrap;       /* CSS 3 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+  }
+}
+
+.window {
+  background: #fafafa;
+  width: 100%;
+  border-radius: 3px;
+  margin: 20px auto;
+  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+}
+
+.window .inner  {
+  padding: 0.5rem 0.75rem 0.1rem 0.75rem;
+}
+.window .inner--result {
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+.window .inner--code--withoutResult {
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.window.window--code {
+  background: none;
+}
+.window .inner--code {
+  padding: 0;
+}
+
+.inner--result {
+  color: #474747;
+  font-weight: 300;
+}
+
+pre code {
+  padding: 0 10px;
+  background: #141414;
+  display: block;
+  padding: 10px;
+  border-radius: 3px;
+  overflow: auto;
+}
+
+p code, ul code, li code {
+  background: darken($color-table-zebra, 1%);
+  border: 1px solid darken($color-table-zebra, 10%);
+  line-height: 1.4rem;
+  padding: 0 5px;
+  display: inline-block;
+  border-radius: 2px;
+}

@@ -1,0 +1,24 @@
+<svg width="600" height="550" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:se="http://svg-edit.googlecode.com" preserveAspectRatio="xMinYMin meet">
+  <g>
+    <title>Layer 1</title>
+    <polyline se:connector="svg_7 svg_8" id="svg_22" points="122.91644287109375,282.74151611328125 89.65998840332031,326.5 56.403541564941406,370.25848388671875" stroke="#000000" stroke-width="5" fill="none" stroke-dasharray="5,5"/>
+    <polyline se:connector="svg_7 svg_9" id="svg_21" points="149.36302185058594,282.74151611328125 145.17288208007812,323.5 140.98275756835938,364.25848388671875" stroke="#000000" stroke-width="5" fill="none" stroke-dasharray="5,5"/>
+    <polyline se:connector="svg_7 svg_10" id="svg_20" points="177.00497436523438,282.74151611328125 207.52903747558594,335 238.0531005859375,387.25848388671875" stroke="#000000" stroke-width="5" fill="none" stroke-dasharray="5,5"/>
+    <polyline se:connector="svg_2 svg_7" id="svg_19" points="217.244140625,132.64306640625 197.04708862304688,167.45077514648438 176.8500213623047,202.25848388671875" stroke="#000000" stroke-width="5" fill="none" stroke-dasharray="5,5"/>
+    <polyline se:connector="svg_5 svg_6" id="svg_18" points="397.74151611328125,401.7062072753906 422.5,418.2488708496094 447.25848388671875,434.7915344238281" stroke="#000000" stroke-width="5" fill="none" stroke-dasharray="5,5"/>
+    <polyline se:connector="svg_3 svg_5" id="svg_17" points="311.259521484375,273.74151611328125 331.488037109375,312.5 351.7165832519531,351.25848388671875" stroke="#000000" stroke-width="5" fill="none" stroke-dasharray="5,5"/>
+    <polyline se:connector="svg_1 svg_3" id="svg_16" points="356.25994873046875,193.2415313720703 336.79949951171875,215.75 317.3390197753906,238.25848388671875" stroke="#000000" stroke-width="5" fill="none" stroke-dasharray="5,5"/>
+    <polyline se:connector="svg_1 svg_4" id="svg_15" points="417.0819396972656,193.2415313720703 428.6715087890625,205.25 440.2610778808594,217.25848388671875" stroke="#000000" stroke-width="5" fill="none" stroke-dasharray="5,5"/>
+    <polyline se:connector="svg_2 svg_1" id="svg_14" points="299.64306640625,110.64816284179688 325.7007751464844,125.7142562866211 351.75848388671875,140.7803497314453" stroke="#000000" stroke-width="5" fill="none" stroke-dasharray="5,5"/>
+    <circle fill="#cccccc" stroke-width="0" cx="385.00001" cy="160" r="33.24153" id="svg_1" stroke="#000000"/>
+    <circle fill="#007fff" stroke-width="0" cx="247.5" cy="80.5" r="52.14306" id="svg_2" stroke="#000000"/>
+    <circle fill="#cccccc" stroke-width="0" cx="301.99999" cy="256" r="17.74152" id="svg_3" stroke="#000000"/>
+    <circle fill="#cccccc" stroke-width="0" cx="467.99998" cy="246" r="28.74152" id="svg_4" stroke="#000000"/>
+    <circle fill="#cccccc" stroke-width="0" cx="367.49998" cy="381.5" r="30.24152" id="svg_5" stroke="#000000"/>
+    <circle fill="#cccccc" stroke-width="0" cx="478.99998" cy="456" r="31.74152" id="svg_6" stroke="#000000"/>
+    <circle fill="#cccccc" stroke-width="0" cx="153.49999" cy="242.5" r="40.24152" id="svg_7" stroke="#000000"/>
+    <circle fill="#cccccc" stroke-width="0" cx="39.49999" cy="392.5" r="22.24152" stroke="#000000" id="svg_8"/>
+    <circle fill="#cccccc" stroke-width="0" cx="136.99999" cy="403" r="38.74152" id="svg_9" stroke="#000000"/>
+    <circle fill="#cccccc" stroke-width="0" cx="248.99999" cy="406" r="18.74152" id="svg_10" stroke="#000000"/>
+  </g>
+</svg>

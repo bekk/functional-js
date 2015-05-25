@@ -1,0 +1,59 @@
+@import "globals/size";
+
+.column {
+  margin-left: calc(#{$column-sidebar-width} + #{$column-sidebar-margin + 1});
+}
+
+.nav-left {
+  float: left;
+  width: $column-sidebar-width;
+  margin-right: $column-sidebar-margin;
+
+  font-size: 0.9rem;
+}
+.nav-left ul,
+.nav-left ol {
+  padding: 0;
+  padding-left: 10px;
+  list-style-type: none;
+}
+.nav-left h3 {
+  margin: 0;
+}
+.nav-left > :not(:first-child) {
+  margin-top: 30px;
+}
+.nav-left h3 a {
+  font-size: 1.2rem;
+  font-weight: 100;
+  color: $color-leftNav-header;
+
+  text-transform: uppercase;
+  display: block;
+}
+
+.nav-left {
+  ul, ol {
+    a {
+      display: block;
+      padding: 5px 0;
+
+      color: $color-leftNav;
+
+      transition: all 300ms;
+
+      &:hover {
+        color: lighten($color-leftNav, 40%);
+      }
+    }
+  }
+}
+
+@media (max-width: $first-breakpoint-width) {
+  .nav-left {
+    display: none;
+  }
+  .column {
+    margin-left: 0;
+  }
+}

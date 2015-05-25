@@ -1,0 +1,37 @@
+@import "./globals/colors";
+
+.graphNode--blue {
+  fill: $color-topNode;
+
+  -webkit-animation-name: 'pulse_animation';
+  -webkit-animation-duration: 2500ms;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  -webkit-transform-origin:70% 70%;
+}
+
+
+.graphEdge--fade,
+.graphNode--fade {
+  -webkit-animation-name: 'fade_animation';
+  -webkit-animation-duration: 5000ms;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+}
+
+@-webkit-keyframes pulse_animation {
+  0% { -webkit-transform: scale(1); }
+  50% { -webkit-transform: scale(.95); }
+  100% { -webkit-transform: scale(1); }
+}
+
+@-webkit-keyframes fade_animation {
+  0% { opacity: 1; }
+  20% { opacity: .9; }
+  30% { opacity: .2; }
+  50% { opacity: .2; }
+  60% { opacity: .2; }
+  70% { opacity: .2; }
+  100% { opacity: 1; }
+}
+

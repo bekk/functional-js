@@ -1,0 +1,67 @@
+
+@mixin width-constraint () {
+  width: 93%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+@mixin width-constraint-large() {
+  width: auto;
+  max-width: none;
+  margin: 3rem $header-height;
+}
+
+@mixin chevron ($color, $height: 30px, $width: 200px) {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  margin-bottom: 6px;
+  height: $height;
+  width: $width;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 51%;
+    background: $color;
+    -webkit-transform: skew(0deg, 6deg);
+    -moz-transform: skew(0deg, 6deg);
+    -ms-transform: skew(0deg, 6deg);
+    -o-transform: skew(0deg, 6deg);
+    transform: skew(0deg, 6deg);
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 50%;
+    background: $color;
+    -webkit-transform: skew(0deg, -6deg);
+    -moz-transform: skew(0deg, -6deg);
+    -ms-transform: skew(0deg, -6deg);
+    -o-transform: skew(0deg, -6deg);
+    transform: skew(0deg, -6deg);
+  }
+}
+
+@mixin triangle ($color, $width: 100px, $height: 30px) {
+  width: 0;
+  height: 0;
+  border-left: $width / 2 solid transparent;
+  border-right: $width / 2 solid transparent;
+  border-top: $height solid $color;
+}
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}

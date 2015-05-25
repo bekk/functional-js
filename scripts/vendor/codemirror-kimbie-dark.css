@@ -1,0 +1,31 @@
+/*
+    Name:     Kimbie (dark)
+    Author:   Jan T. Sott
+    License:  Creative Commons Attribution-ShareAlike 4.0 Unported License
+    URL:      https://github.com/idleberg/Kimbie-CodeMirror
+*/
+
+.cm-s-kimbie-dark.CodeMirror {background: #141414; color: #e4c6a5;}
+.cm-s-kimbie-dark div.CodeMirror-selected {background: #5e452b !important;}
+.cm-s-kimbie-dark .CodeMirror-gutters {background: #141414; border-right: 0px;}
+.cm-s-kimbie-dark .CodeMirror-linenumber {color: #a57a4c;}
+.cm-s-kimbie-dark .CodeMirror-cursor {border-left: 1px solid #d6baad !important;}
+
+.cm-s-kimbie-dark span.cm-comment {color: #088649;}
+.cm-s-kimbie-dark span.cm-atom {color: #98676a;}
+.cm-s-kimbie-dark span.cm-number {color: #98676a;}
+
+.cm-s-kimbie-dark span.cm-property, .cm-s-kimbie-dark span.cm-attribute {color: #889b4a;}
+.cm-s-kimbie-dark span.cm-keyword {color: #dc3958;}
+.cm-s-kimbie-dark span.cm-string {color: #f06431;}
+
+.cm-s-kimbie-dark span.cm-variable {color: #889b4a;}
+.cm-s-kimbie-dark span.cm-variable-2 {color: #8ab1b0;}
+.cm-s-kimbie-dark span.cm-def {color: #f79a32;}
+.cm-s-kimbie-dark span.cm-error {background: #dc3958; color: #d6baad;}
+.cm-s-kimbie-dark span.cm-bracket {color: #e4c6a5;}
+.cm-s-kimbie-dark span.cm-tag {color: #dc3958;}
+.cm-s-kimbie-dark span.cm-link {color: #98676a;}
+
+.cm-s-kimbie-dark .CodeMirror-matchingbracket { text-decoration: underline; color: white !important;}
+

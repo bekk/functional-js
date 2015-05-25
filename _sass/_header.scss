@@ -1,0 +1,135 @@
+@import "./globals/colors";
+@import "./globals/mixins";
+@import "./globals/size";
+
+.mainHeader {
+  background: linear-gradient(to bottom, $color-header-background 0%, $color-header-background--bottom 100%);
+}
+
+.mainHeader-illustration {
+  @include width-constraint;
+
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  svg {
+    min-width: 400px;
+    margin: auto;
+    flex: 3 0 30%;
+  }
+}
+
+.mainHeader-illustration .illustrationText {
+  flex: 1 1 30%;
+  color: $color-infoBoxes;
+  text-shadow: 1px 1px 1px rgba(0,0,0,.4);
+
+  .github-badges {
+    margin-top: 15px;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: $remove-graphics-width) {
+  .mainHeader-illustration svg {
+    display: none;
+  }
+}
+
+.mainNavigation {
+  z-index: 3; // .CodeMirror pre is 2
+
+  height: $header-height;
+  position: fixed;
+  min-height: initial;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: $color-header-background--small;
+}
+
+.mainNavigation-inner {
+  @include width-constraint;
+
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+
+  justify-content: space-between;
+
+  ul {
+    // display: flex;
+    list-style-type: none;
+    margin-top: 5px;
+    font-size: 1.2rem;
+
+    li {
+      float: left;
+
+      &:last-child a {
+        margin-right: 0;
+      }
+    }
+
+    li a {
+      display: block;
+      margin-left: 20px;
+
+      color: $color-header-linkColor;
+      transition: all 300ms;
+
+      text-transform: uppercase;
+      text-decoration: none;
+      font-weight: 300;
+
+
+      &:hover {
+        text-shadow: 1px 1px 3px rgba(0,0,0, .7);
+      }
+    }
+
+    li:first-child a {
+      margin-left: 0;
+    }
+  }
+}
+
+@media (max-width: $minify-header-width) {
+  .mainNavigation-inner ul {
+    li:nth-last-child(1),
+    li:nth-last-child(2) {
+      display: none;
+    }
+  }
+}
+
+.mainNavigation-inner h1 a {
+  display: block;
+
+  img {
+    height: 33px;
+  }
+}
+
+.chevronDown {
+  height: 25px;
+  display: block;
+  text-align: center;
+    transition: all 400ms;
+
+  i {
+    transition: all 400ms;
+    @include chevron($color-blue-light, 5px, 50px);
+    top: 10px;
+    opacity: 0.5;
+  }
+
+  &:hover i {
+    opacity: 1;
+  }
+}
