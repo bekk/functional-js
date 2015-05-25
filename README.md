@@ -1,2 +1,1 @@
-# omniscientjs.github.io
-Homepage for the Omniscient library 
+[Workshop](http://mollerse.github.io/functional-js/workshop/)
