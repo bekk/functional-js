@@ -25,7 +25,7 @@ slides: http://omniscientjs.github.io/workshop-slides/#9
 // class fields, doesn’t set any values other than the return value,
 // and relies only on the parameters for input.
 
-test('map', function(t) {
+describe('map', function() {
     // A map function accepts a higher-order function and a collection,
     // then applies the passed function to each element and returns a
     // collection.
@@ -42,10 +42,10 @@ test('map', function(t) {
         return newArr;
     }
 
-    t.deepEqual(
-        squareFor([1,2,3]),
-        [1,4,9]
-    );
+    it('a test', function() {
+      var result = squareFor([1,2,3]);
+       expect(result).to.deep.equal([1,4,9]);
+    });
 
     // Thankfully we now have a `map` functions on `Array.prototype`.
     // Therefore, we can write this instead:
@@ -56,10 +56,10 @@ test('map', function(t) {
         });
     }
 
-    t.deepEqual(
-        square([1,2,3]),
-        [1,4,9]
-    );
+    it('a test', function() {
+      var result = square([1,2,3]);
+      expect(result).to.deep.equal([1,4,9]);
+    });
 
     // For each iteration of map it invokes the function with three
     // arguments: the current value, the current index, the entire
@@ -82,23 +82,22 @@ test('map', function(t) {
         return newArr;
     }
 
-    t.deepEqual(
-        addIndexFor([1,2,3]),
-        [1,3,5]
-    );
+    it('a test', function() {
+      var result = addIndexFor([1,2,3]);
+      expect(result).to.deep.equal([1,3,5]);
+    });
 
     function addIndex(arr) {
     }
 
-    t.deepEqual(
-        addIndex([1,2,3]),
-        [1,3,5]
-    );
+    it('a test', function() {
+      var result = addIndex([1,2,3]);
+      expect(result).to.deep.equal([1,3,5]);
+    });
 
-    t.end();
 });
 
-test('filter', function(t) {
+describe('filter', function() {
     // Next up is filter. When filtering, you produce another list,
     // potentially smaller than the original, depending on the
     // filtering criteria.
@@ -116,10 +115,10 @@ test('filter', function(t) {
         return newArr;
     }
 
-    t.deepEqual(
-        removeOddIndicesFor([1,2,3,4,5]),
-        [1,3,5]
-    );
+    it('a test', function() {
+      var result = removeOddIndicesFor([1,2,3,4,5]);
+      expect(result).to.deep.equal([1,3,5]);
+    });
 
     // PROBLEM: Implement this using a `Array.prototype.filter`
     // instead:
@@ -127,15 +126,14 @@ test('filter', function(t) {
     function removeOddIndices(arr) {
     }
 
-    t.deepEqual(
-        removeOddIndices([1,2,3,4,5]),
-        [1,3,5]
-    );
+    it('a test', function() {
+      var result = removeOddIndices([1,2,3,4,5]);
+      expect(result).to.deep.equal([1,3,5]);
+    });
 
-    t.end();
 });
 
-test('implement map and filter', function(t) {
+describe('implement map and filter', function() {
     // To be entirely sure that we properly understand how these
     // functions work, let's implement our own `map` and `filter`
     // functions. The implementation of these still have to concern
@@ -150,13 +148,13 @@ test('implement map and filter', function(t) {
     }
 
     var mapRes = map([1,2,3,4], function(value, index) {
-        return value * index;
+      return value * index;
     });
 
-    t.deepEqual(
-        mapRes,
-        [0, 2, 6, 12]
-    );
+    it('a test', function() {
+      var result = mapRes;
+      expect(result).to.deep.equal([0, 2, 6, 12]);
+    });
 
     // PROBLEM: Implement `filter`
 
@@ -164,18 +162,17 @@ test('implement map and filter', function(t) {
     }
 
     var filterRes = filter([1,2,3,4], function(value, index) {
-        return value * index > 4;
+      return value * index > 4;
     });
 
-    t.deepEqual(
-        filterRes,
-        [3,4]
-    );
+    it('a test', function() {
+      var result = filterRes;
+      expect(result).to.deep.equal([3,4]);
+    });
 
-    t.end();
 });
 
-test('reduce', function(t) {
+describe('reduce', function() {
     // The last applicative functions we'll look at for now is reduce.
     // Reduce applies a function against an accumulator and each value
     // of the array to reduce it to a single value.
@@ -184,32 +181,32 @@ test('reduce', function(t) {
     // all items in an array using a `for` loop:
 
     function sumWithFor(arr) {
-        var sum = 0;
-        for (var i = 0; i < arr.length; i++) {
-            sum += arr[i];
-        }
-        return sum;
+      var sum = 0;
+      for (var i = 0; i < arr.length; i++) {
+        sum += arr[i];
+      }
+      return sum;
     }
 
-    t.equal(
-        sumWithFor([1,2,3]),
-        6
-    );
+    it('a test', function() {
+      var result =       sumWithFor([1,2,3]);
+      expect(result).to.equal(      6);
+    });
 
     // Using reduce it can look like this:
 
     function sum(arr) {
-        return arr.reduce(function(acc, value){
+      return arr.reduce(function(acc, value){
 
-            // What is returned in this function is used as `acc` for
-            // the next iteration
-            return acc + value;
+        // What is returned in this function is used as `acc` for
+        // the next iteration
+        return acc + value;
 
-        }, 0);
-        // 0 is the starting value for `acc`
+      }, 0);
+      // 0 is the starting value for `acc`
 
-        // What we return on the last iteration is the result of
-        // the reduce.
+      // What we return on the last iteration is the result of
+      // the reduce.
     }
 
     // This illustrates how reduce works:
@@ -221,30 +218,30 @@ test('reduce', function(t) {
     //                  6        4
     //                 10
 
-    t.equal(
-        sum([1,2,3,4]),
-        10
-    )
+    it('a test', function() {
+      var result = sum([1,2,3,4]);
+      expect(result).to.equal(10);
+    });
 
-    t.equal(
-        sum([0,0,-1]),
-        -1
-    )
+    it('a test', function() {
+      var result = sum([0,0,-1]);
+      expect(result).to.equal(-1);
+    });
 
     // PROBLEM: Implement multiplication using reduce
 
     function multiply(arr) {
     }
 
-    t.equal(
-        multiply([1,2,3,4]),
-        24
-    );
+    it('a test', function() {
+      var result = multiply([1,2,3,4]);
+      expect(result).to.equal(24);
+    });
 
-    t.equal(
-        multiply([0,1,2,3]),
-        0
-    );
+    it('a test', function() {
+      var result = multiply([0,1,2,3]);
+      expect(result).to.equal(0);
+    });
 
     // PROBLEM: Implement join using reduce
     // (think about what's the first value and what we need to
@@ -253,17 +250,16 @@ test('reduce', function(t) {
     function join(arr, chr) {
     }
 
-    t.equal(
-        join(["a"], ":"),
-        "a"
-    );
+    it('a test', function() {
+      var result = join(["a"], ":");
+      expect(result).to.equal("a");
+    });
 
-    t.equal(
-        join(["a","b","c"], ":"),
-        "a:b:c"
-    );
+    it('a test', function() {
+      var result = join(["a","b","c"], ":");
+      expect(result).to.equal("a:b:c");
+    });
 
-    t.end();
 });
 
 // In the examples we have seen so far, we have used methods that live
@@ -280,7 +276,7 @@ test('reduce', function(t) {
 // (however, we could also have chosen Underscore instead)
 var _ = require('lodash');
 
-test("_.reduce", function(t) {
+describe("_.reduce", function() {
     // We'll start by going back to reduce. Compared to the built-in
     // reduce, _.reduce does not need a starting value (which means
     // it's actually a fold not a reduce. (In fact, in Lo-Dash _.reduce
@@ -292,10 +288,10 @@ test("_.reduce", function(t) {
         });
     }
 
-    t.equal(
-        join(["a","b","c"], ":"),
-        "a:b:c"
-    );
+    it('a test', function() {
+      var result = join(["a","b","c"], ":");
+      expect(result).to.equal("a:b:c");
+    });
 
     // PROBLEM: Determine the longest word using _.reduce
 
@@ -304,24 +300,23 @@ test("_.reduce", function(t) {
     function longest(arr) {
     }
 
-    t.deepEqual(
-        longest(words),
-        'winning'
-    );
+    it('a test', function() {
+      var result = longest(words);
+      expect(result).to.equal('winning');
+    });
 
-    t.end();
 });
 
-test('filter exists', function(t) {
+describe('filter exists', function() {
     // A couple of simple helpers that need to be implemented
     // to show of a powerful trick when calling functions
 
     function exists(x) {
-        return x != null;
+      return x != null;
     }
 
     function truthy(x) {
-        return exists(x) && x !== false;
+      return exists(x) && x !== false;
     }
 
     var values = ['user', null, false, 0, 'test', 1];
@@ -339,15 +334,15 @@ test('filter exists', function(t) {
     // This is called point-free style, we'll see quite a bit of this today!
     // (There are some things to think about. We'll look at those later.)
 
-    t.deepEqual(
-        values.filter(exists),
-        ['user', false, 0, 'test', 1]
-    );
+    it('a test', function() {
+      var result = values.filter(exists);
+      expect(result).to.deep.equal(['user', false, 0, 'test', 1]);
+    });
 
-    t.deepEqual(
-        values.filter(truthy),
-        ['user', 0, 'test', 1]
-    );
+    it('a test', function() {
+      var result = values.filter(truthy);
+      expect(result).to.deep.equal(['user', 0, 'test', 1]);
+    });
 
     // PROBLEM: Sum the array using `_.reduce`, following a point-free style.
 
@@ -355,12 +350,11 @@ test('filter exists', function(t) {
 
     var sum = null;
 
-    t.equal(sum, 15);
+    expect(sum).to.equal(15);
 
-    t.end();
 });
 
-test('map, filter with context', function(t) {
+describe('map, filter with context', function() {
     // Sometimes you want to use map, filter, reduce or other functions
     // inside an object and you want want to access something on
     // `this`. Thankfully this is very simple on _.filter and friends --
@@ -370,49 +364,48 @@ test('map, filter with context', function(t) {
     var ages = [20, 30, 75, 156, 200];
 
     var people = {
-        maxAge: 120,
-        validAges: function(ages) {
+      maxAge: 120,
+      validAges: function(ages) {
 
-            return _.filter(ages, function(age) {
-                return age < this.maxAge;
-            }, this);
+        return _.filter(ages, function(age) {
+          return age < this.maxAge;
+        }, this);
 
-            // here we specified that we want `this` inside the function in the
-            // filter be the same as `this` is inside the current function
-        }
+        // here we specified that we want `this` inside the function in the
+        // filter be the same as `this` is inside the current function
+      }
     };
 
-    t.deepEqual(
-        people.validAges(ages),
-        [20, 30, 75]
-    );
+    it('a test', function() {
+      var result = people.validAges(ages);
+      expect(result).to.deep.equal([20, 30, 75]);
+    });
 
     // PROBLEM: Fix our filter implementation below so it handles the
     // specified context
 
     var filter = function(items, fn, context) {
-        var arr = [];
-        for (var i = 0; i < items.length; i++) {
-            if (fn(items[i], i)) {
-                arr.push(items[i]);
-            }
+      var arr = [];
+      for (var i = 0; i < items.length; i++) {
+        if (fn(items[i], i)) {
+          arr.push(items[i]);
         }
-        return arr;
+      }
+      return arr;
     }
 
     var people2 = {
-        maxAge: 120,
-        validAges: function(ages) {
-            return filter(ages, function(age) {
-                return age < this.maxAge;
-            }, this);
-        }
+      maxAge: 120,
+      validAges: function(ages) {
+        return filter(ages, function(age) {
+          return age < this.maxAge;
+        }, this);
+      }
     };
 
-    t.deepEqual(
-        people2.validAges(ages),
-        [20, 30, 75]
-    );
+    it('a test', function() {
+      var result = people2.validAges(ages);
+      expect(result).to.deep.equal([20, 30, 75]);
+    });
 
-    t.end();
 });
