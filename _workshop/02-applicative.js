@@ -344,12 +344,13 @@ describe('filter exists', function() {
     });
 
     // PROBLEM: Sum the array using `_.reduce`, following a point-free style.
+    it('filterexists3', function() {
+      var nums = [1,2,3,4,5];
 
-    var nums = [1,2,3,4,5];
+      var sum = null;
 
-    var sum = null;
-
-    expect(sum).to.equal(15);
+      expect(sum).to.equal(15);
+    });
 
 });
 
