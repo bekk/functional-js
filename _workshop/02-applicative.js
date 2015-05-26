@@ -42,7 +42,7 @@ describe('map', function() {
         return newArr;
     }
 
-    it('a test', function() {
+    it('map1', function() {
       var result = squareFor([1,2,3]);
        expect(result).to.deep.equal([1,4,9]);
     });
@@ -56,7 +56,7 @@ describe('map', function() {
         });
     }
 
-    it('a test', function() {
+    it('map2', function() {
       var result = square([1,2,3]);
       expect(result).to.deep.equal([1,4,9]);
     });
@@ -82,7 +82,7 @@ describe('map', function() {
         return newArr;
     }
 
-    it('a test', function() {
+    it('map3', function() {
       var result = addIndexFor([1,2,3]);
       expect(result).to.deep.equal([1,3,5]);
     });
@@ -90,7 +90,7 @@ describe('map', function() {
     function addIndex(arr) {
     }
 
-    it('a test', function() {
+    it('map4', function() {
       var result = addIndex([1,2,3]);
       expect(result).to.deep.equal([1,3,5]);
     });
@@ -115,7 +115,7 @@ describe('filter', function() {
         return newArr;
     }
 
-    it('a test', function() {
+    it('filter1', function() {
       var result = removeOddIndicesFor([1,2,3,4,5]);
       expect(result).to.deep.equal([1,3,5]);
     });
@@ -126,7 +126,7 @@ describe('filter', function() {
     function removeOddIndices(arr) {
     }
 
-    it('a test', function() {
+    it('filter2', function() {
       var result = removeOddIndices([1,2,3,4,5]);
       expect(result).to.deep.equal([1,3,5]);
     });
@@ -151,7 +151,7 @@ describe('implement map and filter', function() {
       return value * index;
     });
 
-    it('a test', function() {
+    it('mapfilter1', function() {
       var result = mapRes;
       expect(result).to.deep.equal([0, 2, 6, 12]);
     });
@@ -165,7 +165,7 @@ describe('implement map and filter', function() {
       return value * index > 4;
     });
 
-    it('a test', function() {
+    it('mapfilter2', function() {
       var result = filterRes;
       expect(result).to.deep.equal([3,4]);
     });
@@ -188,7 +188,7 @@ describe('reduce', function() {
       return sum;
     }
 
-    it('a test', function() {
+    it('reduce1', function() {
       var result =       sumWithFor([1,2,3]);
       expect(result).to.equal(      6);
     });
@@ -218,12 +218,12 @@ describe('reduce', function() {
     //                  6        4
     //                 10
 
-    it('a test', function() {
+    it('reduce2', function() {
       var result = sum([1,2,3,4]);
       expect(result).to.equal(10);
     });
 
-    it('a test', function() {
+    it('reduce3', function() {
       var result = sum([0,0,-1]);
       expect(result).to.equal(-1);
     });
@@ -233,12 +233,12 @@ describe('reduce', function() {
     function multiply(arr) {
     }
 
-    it('a test', function() {
+    it('reduce4', function() {
       var result = multiply([1,2,3,4]);
       expect(result).to.equal(24);
     });
 
-    it('a test', function() {
+    it('reduce5', function() {
       var result = multiply([0,1,2,3]);
       expect(result).to.equal(0);
     });
@@ -250,12 +250,12 @@ describe('reduce', function() {
     function join(arr, chr) {
     }
 
-    it('a test', function() {
+    it('reduce6', function() {
       var result = join(["a"], ":");
       expect(result).to.equal("a");
     });
 
-    it('a test', function() {
+    it('reduce7', function() {
       var result = join(["a","b","c"], ":");
       expect(result).to.equal("a:b:c");
     });
@@ -287,7 +287,7 @@ describe("_.reduce", function() {
         });
     }
 
-    it('a test', function() {
+    it('lodashreduce1', function() {
       var result = join(["a","b","c"], ":");
       expect(result).to.equal("a:b:c");
     });
@@ -299,7 +299,7 @@ describe("_.reduce", function() {
     function longest(arr) {
     }
 
-    it('a test', function() {
+    it('lodashreduce2', function() {
       var result = longest(words);
       expect(result).to.equal('winning');
     });
@@ -333,12 +333,12 @@ describe('filter exists', function() {
     // This is called point-free style, we'll see quite a bit of this today!
     // (There are some things to think about. We'll look at those later.)
 
-    it('a test', function() {
+    it('filterexists1', function() {
       var result = values.filter(exists);
       expect(result).to.deep.equal(['user', false, 0, 'test', 1]);
     });
 
-    it('a test', function() {
+    it('filterexists2', function() {
       var result = values.filter(truthy);
       expect(result).to.deep.equal(['user', 0, 'test', 1]);
     });
@@ -375,7 +375,7 @@ describe('map, filter with context', function() {
       }
     };
 
-    it('a test', function() {
+    it('mapfilterwithcontext1', function() {
       var result = people.validAges(ages);
       expect(result).to.deep.equal([20, 30, 75]);
     });
@@ -402,7 +402,7 @@ describe('map, filter with context', function() {
       }
     };
 
-    it('a test', function() {
+    it('mapfilterwithcontext2', function() {
       var result = people2.validAges(ages);
       expect(result).to.deep.equal([20, 30, 75]);
     });
