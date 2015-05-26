@@ -8,174 +8,137 @@ name: 05-3-pipelines
 next: 05-4-parse-url
 slides:
 info: |
-
+//TODO: Write something here
 ---
-describe('pipelining after', function() {
-    // In the JS world we're not used to reading from the right
-    // as in this example from earlier:
-    var composed = _.compose(_.last, _.range);
+// In the JS world we're not used to reading from the right
+// as in this example from earlier:
+var composed = _.compose(_.last, _.range);
 
-    // Here `range` is called first, then `last` is called on the
-    // result from range.
+// Here `range` is called first, then `last` is called on the
+// result from range.
 
-    // Thankfully it's easy to reverse the arguments -- we have already
-    // done this using flip! Let's create a function that works like
-    // flip, but with any number of arguments:
+// Thankfully it's easy to reverse the arguments -- we have already
+// done this using flip! Let's create a function that works like
+// flip, but with any number of arguments:
 
-    var flipN = function(fn) {
-        return function() {
-            // reverse arguments when called
-            // (remember that arguments is not an array)
-            return fn.apply(this, _.toArray(arguments).reverse());
-        }
-    }
+var flipN = function(fn) {
+  return function() {
+    // reverse arguments when called
+    // (remember that arguments is not an array)
+    return fn.apply(this, _.toArray(arguments).reverse());
+  }
+}
 
-    // And, as for flip:
-    var pipeline = flipN(_.compose);
+// And, as for flip:
+var pipeline = flipN(_.compose);
 
-    // Now pipeline expects to receive its arguments in reversed order
-    // of compose, i.e. now we can write this "the other way around".
-    // For a pipelined version of last in range:
-    var pipelined = pipeline(_.range, _.last);
+// Now pipeline expects to receive its arguments in reversed order
+// of compose, i.e. now we can write this 'the other way around'.
+// For a pipelined version of last in range:
+var pipelined = pipeline(_.range, _.last);
 
-    // And we ensure that they do the same thing:
-    it('a test', function() {
-			var result = composed(1,10);
-			expect(result).to.equal(9);
-		});
+describe('pipelined after', function() {
 
-    it('a test', function() {
-			var result = pipelined(1,10);
-			expect(result).to.equal(9);
-		});
-
-    // So, let's get back to the `after` function we created in the
-    // previous test. First we'll bring in the helpers:
-
-    var splitOn = _.curry(function(chr, str) {
-        //return str.split(chr);
-    });
-
-    var joinOn = _.curry(function(chr, arr) {
-        return arr.join(chr);
-    });
-
-    // PROBLEM: Now, it's your turn to create a pipelined after.
-    var after = pipeline(
-    );
-
-    it('a test', function() {
-			var result = after("?", "test?hei");
-			expect(result).to.equal("hei");
-		});
-
+  // And we ensure that they do the same thing:
+  it('should do the same as the composed version', function() {
+		var composedResult = composed(1,10);
+		var pipelinedResult = pipelined(1,10);
+		expect(pipelinedResult).to.equal(composedResult);
+	});
 });
 
-describe('a spicy trick', function() {
-    // First our helpers for this test:
+// So, let's get back to the `after` function we created in the
+// previous task. First we'll bring in the helpers:
 
-    var flipN = function(fn) {
-        return function() {
-            return fn.apply(this, _.toArray(arguments).reverse());
-        }
+var splitOn = _.curry(function(chr, str) {
+  return String.prototype.split.call(str, chr);
+});
+
+var joinOn = _.curry(function(chr, arr) {
+  return arr.join(chr);
+});
+
+// PROBLEM: Now, it's your turn to create a pipelined after.
+var after = pipeline(
+);
+
+describe('after', function() {
+  it('should return the element after the character', function() {
+		var result = after('?', 'test?hei');
+		expect(result).to.equal('hei');
+	});
+});
+
+// Now, we want to curry this function too. So we try with this:
+var naiveCurriedAfter = _.curry(after);
+
+describe('naiveCurriedAfter', function() {
+  // Sadly this doesn't entirely work. It works when called with
+  // both parameters:
+  it('should work as expected when called with both arguments', function() {
+		var result = naiveCurriedAfter('?', 'test?hei');
+		expect(result).to.equal('hei');
+	});
+
+  // However, it fails hard when called with one at a time and gives us:
+  //
+  //     [TypeError: string is not a function]
+
+  it('should not work when called with one arg at a time', function() {
+    function result() {
+      naiveCurriedAfter('?')('test?hei');
     }
-    var pipeline = flipN(_.compose);
+    expect(result).to.throw(TypeError);
+  });
+});
 
-    var splitOn = _.curry(function(chr, str) {
-        //return str.split(chr);
-    });
+// Why does this happen?
 
-    var joinOn = _.curry(function(chr, arr) {
-        return arr.join(chr);
-    });
+// The problem is that the pipeline don't expect any arguments, so
+// `_.curry` think we're done the first time we call a curried function.
+// We could solve it using something like this, where we're explicit about
+// two arguments.
 
-    // In the last test we left off at something like this:
+var curriedAfter = _.curry(function(chr, str) {
+  return after(chr, str);
+});
 
-    var after = pipeline(
-        splitOn,
-        _.rest,
-        joinOn("")
-    );
+describe('curried After', function() {
+  it('should work when called with both arguments', function() {
+		var result = curriedAfter('?', 'test?hei');
+		expect(result).to.equal('hei');
+	});
 
-    it('a test', function() {
-			var result = after("?", "test?hei");
-			expect(result).to.equal("hei");
-		});
+  it('should work when called with one arg after another', function() {
+		var result = curriedAfter('?')('test?hei');
+		expect(result).to.equal('hei');
+	});
+});
 
-    // Now, we want to curry this function too. So we try with this:
 
-    var after = _.curry(pipeline(
-        splitOn,
-        _.rest,
-        joinOn("")
-    ));
+// That works! However, now we see (chr, str) in both the function
+// definition and where we execute our function. This isn't very nice.
+// (Point-free style and all that.) The solution is to tell curry how many
+// arguments we expect:
 
-    // But, sadly this doesn't entirely work. It works when called with
-    // both parameters:
 
-    it('a test', function() {
-			var result = after("?", "test?hei");
-			expect(result).to.equal("hei");
-		});
 
-    // However, it fails hard when called with one at a time and gives us:
-    //
-    //     [TypeError: string is not a function]
+var properlyCurriedAfter = _.curry(after, 2);
 
-    it('a test', function() {
-      function result() {
-          after("?")("test?hei");
-      }
-      expect(result()).to.throw(TypeError);
-    });
-    // Why does this happen?
+describe('propertyCurriedAfter', function() {
 
-    // The problem is that the pipeline don't expect any arguments, so
-    // `_.curry` think we're done the first time we call a curried function.
-    // We could solve it using something like this, where we're explicit about
-    // two arguments.
+  it('should work when called with both arguments', function() {
+		var result = properlyCurriedAfter('?', 'test?hei');
+		expect(result).to.equal('hei');
+	});
 
-    var after2 = _.curry(function(chr, str) {
-        return pipeline(
-            splitOn,
-            _.rest,
-            joinOn("")
-        )(chr, str);
-    });
+  it('should work when called with one arg after another', function() {
+		var result = properlyCurriedAfter('?')('test?hei');
+		expect(result).to.equal('hei');
+	});
 
-    it('a test', function() {
-			var result = after2("?", "test?hei");
-			expect(result).to.equal("hei");
-		});
-
-    it('a test', function() {
-			var result = after2("?")("test?hei");
-			expect(result).to.equal("hei");
-		});
-
-    // That works! However, now we see (chr, str) in both the function
-    // definition and where we execute our function. This isn't very nice.
-    // (Point-free style and all that.) The solution is to tell curry how many
-    // arguments we expect:
-
-    var after3 = _.curry(pipeline(
-        splitOn,
-        _.rest,
-        joinOn("")
-    ), 2);
-
-    it('a test', function() {
-			var result = after3("?", "test?hei");
-			expect(result).to.equal("hei");
-		});
-
-    it('a test', function() {
-			var result = after3("?")("test?hei");
-			expect(result).to.equal("hei");
-		});
-
-    // Okay, there was actually no tests to implement here, just a long
-    // explanation of currying and arity. If you're still with us, you're
-    // starting to understand how composition and currying works.
+  // Okay, there was actually no tests to implement here, just a long
+  // explanation of currying and arity. If you're still with us, you're
+  // starting to understand how composition and currying works.
 
 });
