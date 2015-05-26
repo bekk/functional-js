@@ -5,7 +5,7 @@ title: Create functions from functions
 section: 4
 prev: 04-1-partial-application
 name: 04-2-functions-from-functions
-next: 05-curry-compose
+next: 05-1-currying
 slides:
 info: |
 ---
