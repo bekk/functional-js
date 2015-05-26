@@ -18,6 +18,11 @@
         {% endif %}
       </div>
 
+      {% if page.info %}
+        <h2>Information</h2>
+        <p class="info">{{page.info}}</p>
+      {% endif %}
+
       <div class="editor" data-is-large=true><textarea>{{ content }}</textarea></div>
 
       <h2>Tasks</h2>

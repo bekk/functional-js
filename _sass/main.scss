@@ -49,6 +49,10 @@ ul, ol {
   padding-left: 20px;
 }
 
+.info {
+  max-width: 65%;
+}
+
 @import "header";
 @import "graph";
 @import "window";

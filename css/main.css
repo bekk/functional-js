@@ -81,6 +81,9 @@ ul, ol {
   list-style-position: inside;
   padding-left: 20px; }
 
+.info {
+  max-width: 65%; }
+
 .mainHeader {
   background: -webkit-linear-gradient(top, #0098C6 0%, #3e5771 100%);
   background: linear-gradient(to bottom, #0098C6 0%, #3e5771 100%); }
