@@ -274,7 +274,6 @@ describe('reduce', function() {
 
 // In this course we'll use Lo-Dash
 // (however, we could also have chosen Underscore instead)
-var _ = require('lodash');
 
 describe("_.reduce", function() {
     // We'll start by going back to reduce. Compared to the built-in
