@@ -13,7 +13,7 @@ slides: http://omniscientjs.github.io/workshop-slides/#9
 // some arguments "up front", i.e. we bind argument values to values
 // that we supply, producing a function that accepts less arguments.
 
-test('partially bind', function(t) {
+describe('partially bind', function() {
     // We will start by using `bind`, which is yet another way of
     // specifying `this` in JavaScript.
 
@@ -22,7 +22,10 @@ test('partially bind', function(t) {
     }
 
     var fourPlusOne = addOne.bind(4)
-    t.equal(fourPlusOne(), 5);
+    it('a test', function() {
+			var result = fourPlusOne();
+			expect(result).to.equal(5);
+		});
 
     // However, `bind` can do more powerful stuff than this: we can
     // actually partially apply some arguments. It's easier to
@@ -41,7 +44,10 @@ test('partially bind', function(t) {
     // This returns a new function where `a` is already set, and which
     // we can then call with the last parameter, `b`:
 
-    t.equal(addTwo(40), 42);
+    it('a test', function() {
+			var result = addTwo(40);
+			expect(result).to.equal(42);
+		});
 
     // This is a powerful technique. The only problem with `bind`, is
     // that we need to specify the context ourselves. However, as we
@@ -51,10 +57,9 @@ test('partially bind', function(t) {
     // right instead of from the left. It's time to get back to Lo-Dash
     // and the helpers offered there.
 
-    t.end();
 });
 
-test('partial application', function(t) {
+describe('partial application', function() {
     // Let's start by going back to plus:
 
     function plus(a, b) {
@@ -65,24 +70,30 @@ test('partial application', function(t) {
 
     var addTwo = _.partial(plus, 2);
 
-    t.equal(addTwo(40), 42);
+    it('a test', function() {
+			var result = addTwo(40);
+			expect(result).to.equal(42);
+		});
 
     // PROBLEM: Use `_.partialRight` to apply in the other direction,
     // i.e. to set `b` first.
 
     var addThree = null;
 
-    t.equal(addThree(5), 8);
+    it('a test', function() {
+			var result = addThree(5);
+			expect(result).to.equal(8);
+		});
 
     // Now, let's get back to `parseInt`. A natural first step when
     // wanting to apply 10 as the last parameter is to try it out:
 
     var parseDigit = _.partialRight(parseInt, 10)
 
-    t.equal(
-        parseDigit('08'),
-        8
-    );
+    it('a test', function() {
+			var result = parseDigit('08');
+			expect(result).to.equal(8);
+		});
 
     // Perfect, that works! Okey, now:
 
@@ -90,9 +101,18 @@ test('partial application', function(t) {
 
     // But no, this is not as we expected:
 
-    t.equal(parsed[0], 1);
-    t.ok(isNaN(parsed[1]), 'second item is NaN');
-    t.ok(isNaN(parsed[2]), 'third item is NaN');
+    it('a test', function() {
+			var result = parsed[0];
+			expect(result).to.equal(1);
+		});
+    it('a test', function() {
+			var result = isNaN(parsed[1]);
+			expect(result).to.ok;
+		});
+    it('a test', function() {
+			var result = isNaN(parsed[2]);
+			expect(result).to.ok;
+		});
 
     // Why?
 
@@ -130,10 +150,9 @@ test('partial application', function(t) {
     // The solution here didn't end up too smooth, but later in this workshop
     // we'll see a couple of techniques that can help us improve this significantly.
 
-    t.end();
 });
 
-test('create functions from functions', function(t) {
+describe('create functions from functions', function() {
     // Okey, let's keep playing with partial application. The thing about map,
     // filter and reduce is that we often have a "static" function as the last
     // parameter, and a "dynamic" input that is applied to the function. Take
@@ -145,7 +164,10 @@ test('create functions from functions', function(t) {
         });
     }
 
-    t.deepEqual(square([1,2,3]), [1,4,9]);
+    it('a test', function() {
+			var result = square([1,2,3]);
+			expect(result).to.deep.equal([1,4,9]);
+		});
 
     // With partial application this can also be written like this:
 
@@ -153,7 +175,10 @@ test('create functions from functions', function(t) {
         return val * val;
     });
 
-    t.deepEqual(square2([1,2,3]), [1,4,9]);
+    it('a test', function() {
+			var result = square2([1,2,3]);
+			expect(result).to.deep.equal([1,4,9]);
+		});
 
     // Note that we never specify the array argument in `square2`, but we need
     // to specify it in `square`. Again, point-free style.
@@ -163,15 +188,14 @@ test('create functions from functions', function(t) {
 
     var onlyEven = null;
 
-    t.deepEqual(
-        onlyEven([1,2,3,4,5]),
-        [2,4]
-    );
+    it('a test', function() {
+			var result = onlyEven([1,2,3,4,5]);
+			expect(result).to.deep.equal([2,4]);
+		});
 
-    t.end();
 });
 
-test('mapWith', function(t) {
+describe('mapWith', function() {
     // Above we needed to use _.partialRight to create our function based on
     // `map` and `filter`. As we touched upon you often want to work in the
     // opposite direction of the direction specified by Lo-Dash and
@@ -187,30 +211,29 @@ test('mapWith', function(t) {
         return val * val;
     });
 
-    t.deepEqual(
-        square([1,2,3]),
-        [1,4,9]
-    );
+    it('a test', function() {
+			var result = square([1,2,3]);
+			expect(result).to.deep.equal([1,4,9]);
+		});
 
     // PROBLEM: Use `mapWith` and `_.partial` to create a function that adds
     // the current index to the current value:
 
     var plusIndex = null;
 
-    t.deepEqual(
-        plusIndex([1,2,3]),
-        [1,3,5]
-    );
+    it('a test', function() {
+			var result = plusIndex([1,2,3]);
+			expect(result).to.deep.equal([1,3,5]);
+		});
 
     // But damn, it would be nice to get away from that call to
     // _.partial! In order to get there, let's first do a small
     // generalization then we'll take a look at a another powerful
     // technique.
 
-    t.end();
 });
 
-test('flip', function(t) {
+describe('flip', function() {
     // So, first the generalization: Instead of flipping the arguments
     // ourselves we can create a flip method which flips the two
     // arguments on the passed function:
@@ -231,10 +254,10 @@ test('flip', function(t) {
         return val * val;
     });
 
-    t.deepEqual(
-        square([1,2,3]),
-        [1,4,9]
-    );
+    it('a test', function() {
+			var result = square([1,2,3]);
+			expect(result).to.deep.equal([1,4,9]);
+		});
 
     // PROBLEM: Use flip to create a parseInt that applies in the other
     // direction, i.e. the base first. Then partially apply it to create
@@ -245,10 +268,9 @@ test('flip', function(t) {
 
     var parseDigits = _.partial(mapWith, parseDigit);
 
-    t.deepEqual(
-        parseDigits(['123', '08', '001']),
-        [123, 8, 1]
-    );
+    it('a test', function() {
+			var result = parseDigits(['123', '08', '001']);
+			expect(result).to.deep.equal([123, 8, 1]);
+		});
 
-    t.end();
 });
