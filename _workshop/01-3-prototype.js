@@ -5,7 +5,7 @@ title: Functions and prototypes
 section: 1
 prev: 01-2-arguments
 name: 01-3-prototype
-next: 02-applicative
+next: 02-1-applicative
 slides:
 info: |
   Prototypes are another core concept in JavaScript. Functions and prototypes
