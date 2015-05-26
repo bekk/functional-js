@@ -13,7 +13,7 @@ slides: http://omniscientjs.github.io/workshop-slides/#9
 // start focusing more on higher-order functions and what we can do
 // with JavaScript.
 
-test('function factories!', function(t) {
+describe('function factories!', function() {
     // In JavaScript we love factories. Let's create a factory that
     // creates adder functions:
 
@@ -25,15 +25,15 @@ test('function factories!', function(t) {
 
     var addTwo = makeAdder(2)
 
-    t.equal(
-        addTwo(40),
-        42
-    );
+    it('a test', function() {
+			var result =         addTwo(40);
+			expect(result).to.equal(        42);
+		});;
 
-    t.equal(
-        addTwo(3),
-        5
-    );
+    it('a test', function() {
+			var result =         addTwo(3);
+			expect(result).to.equal(        5);
+		});;
 
     // Seems simple enough, but it's a powerful technique that we will
     // be having a lot of fun with.
@@ -48,18 +48,29 @@ test('function factories!', function(t) {
 
     var c1 = counter();
 
-    t.equal(c1(), 0);
-    t.equal(c1(), 1);
-    t.equal(c1(), 2);
+    it('a test', function() {
+			var result = c1();
+			expect(result).to.equal(0);
+		});
+    it('a test', function() {
+			var result = c1();
+			expect(result).to.equal(1);
+		});
+    it('a test', function() {
+			var result = c1();
+			expect(result).to.equal(2);
+		});
 
     var c2 = counter();
 
-    t.equal(c2(), 0);
+    it('a test', function() {
+			var result = c2();
+			expect(result).to.equal(0);
+		});
 
-    t.end();
 });
 
-test('function taking function as argument', function(t) {
+describe('function taking function as argument', function() {
     // Sometimes we want to take a function as an argument.
 
     // PROBLEM: Create a once factory that receives a function that
@@ -73,19 +84,30 @@ test('function taking function as argument', function(t) {
         return name + ' is winning';
     });
 
-    t.equal(win('kim'), 'kim is winning');
-    t.equal(win('kjetil'), 'kim is winning');
-    t.equal(win('stian'), 'kim is winning');
-    t.equal(win('mikael'), 'kim is winning');
+    it('a test', function() {
+			var result = win('kim');
+			expect(result).to.equal('kim is winning');
+		});
+    it('a test', function() {
+			var result = win('kjetil');
+			expect(result).to.equal('kim is winning');
+		});
+    it('a test', function() {
+			var result = win('stian');
+			expect(result).to.equal('kim is winning');
+		});
+    it('a test', function() {
+			var result = win('mikael');
+			expect(result).to.equal('kim is winning');
+		});
     // I WON!
 
     // And we have now decorated a function, i.e. wrapped an existing functions
     // with new functionality.
 
-    t.end();
 });
 
-test('add functions to functions', function(t) {
+describe('add functions to functions', function() {
     // In JavaScript you can actually add functions onto existing
     // functions. This can create sweet APIs. Let's look at an example.
 
@@ -120,17 +142,25 @@ test('add functions to functions', function(t) {
         return msg;
     });
 
-    t.equal(debug('test 1'), undefined);
-    t.equal(debug('test 2'), undefined);
+    it('a test', function() {
+			var result = debug('test 1');
+			expect(result).to.equal(undefined);
+		});
+    it('a test', function() {
+			var result = debug('test 2');
+			expect(result).to.equal(undefined);
+		});
 
     debug.start();
 
-    t.equal(debug('test 3'), 'test 3');
+    it('a test', function() {
+			var result = debug('test 3');
+			expect(result).to.equal('test 3');
+		});
 
-    t.end();
 });
 
-test('make it fluent', function(t) {
+describe('make it fluent', function() {
     // Many of us are used to jQuery and its fluent apis, e.g.
     //
     //     $('#test')
@@ -159,9 +189,18 @@ test('make it fluent', function(t) {
         return val + "!";
     });
 
-    t.equal(exclamate("test"), "test!");
-    t.equal(exclamate(null), undefined);
-    t.equal(exclamate(), undefined);
+    it('a test', function() {
+			var result = exclamate("test");
+			expect(result).to.equal("test!");
+		});
+    it('a test', function() {
+			var result = exclamate(null);
+			expect(result).to.equal(undefined);
+		});
+    it('a test', function() {
+			var result = exclamate();
+			expect(result).to.equal(undefined);
+		});
 
     // We have now created a helper than only calls the received function is
     // the input is neither null nor undefined. Yet another decorator, that is.
@@ -174,9 +213,9 @@ test('make it fluent', function(t) {
         })
     };
 
-    t.throws(function() {
-        user.setName("kim");
-    }, TypeError);
+    it('to throw', function() {
+      expect(user.setName('kim')).to.throw(TypeError);
+    });
 
     // It throws this error at us:
     //
@@ -206,23 +245,28 @@ test('make it fluent', function(t) {
         }
     };
 
-    var val = $('#test')
-        .css('color','#333')
-        .height(200)
-        .on('click', function() {
-            console.log('clicked!')
-        })
-        .value;
+    // var val = $('#test')
+    //     .css('color','#333')
+    //     .height(200)
+    //     .on('click', function() {
+    //         console.log('clicked!')
+    //     })
+    //     .value;
 
-    t.equal(val, 'somevalue');
+    it('a test', function() {
+			var result = val;
+			expect(result).to.equal('somevalue');
+		});
 
-    t.end();
 });
 
-test('understanding arity', function(t) {
+describe('understanding arity', function() {
     // Going from string to int we can use parseInt, e.g.
 
-    t.equal(parseInt('123'), 123);
+    it('a test', function() {
+			var result = parseInt('123');
+			expect(result).to.equal(123);
+		});
 
     // However, trying to use this function together with map,
     // we see a problem:
@@ -230,9 +274,18 @@ test('understanding arity', function(t) {
     var parsed = ['1','2','3'].map(parseInt)
     //=> [1, NaN, NaN]
 
-    t.equal(parsed[0], 1);
-    t.ok(isNaN(parsed[1]));
-    t.ok(isNaN(parsed[2]));
+    it('a test', function() {
+			var result = parsed[0];
+			expect(result).to.equal(1);
+		});
+    it('a test', function() {
+			var result = isNaN(parsed[1]);
+			expect(result).to.ok;
+		});
+    it('a test', function() {
+			var result = isNaN(parsed[2]);
+			expect(result).to.ok;
+		});
     // (we can't use deepEqual since NaN !== NaN in JavaScript)
 
     // The problem is that map calls each function with three parameters -- the
@@ -242,10 +295,10 @@ test('understanding arity', function(t) {
         return parseInt(value);
     })
 
-    t.deepEqual(
-        parsed2,
-        [1,2,3]
-    );
+    it('a test', function() {
+			var result =         parsed2;
+			expect(result).to.deep.equal(        [1,2,3]);
+		});
 
     // However, there are a couple of other solutions. We can for example
     // create a helper to do the job for us, and that lets us write:
@@ -261,10 +314,10 @@ test('understanding arity', function(t) {
     // Here we have created unary, which ensures that a function is only ever
     // called with one argument, no matter how many you actually send to it.
 
-    t.deepEqual(
-        parsed3,
-        [1,2,3]
-    );
+    it('a test', function() {
+			var result =         parsed3;
+			expect(result).to.deep.equal(        [1,2,3]);
+		});
 
     // However, unary might be to simple in this case, as we actually
     // might want to call:
@@ -274,5 +327,4 @@ test('understanding arity', function(t) {
     // To get there, however, we should first learn some things about
     // partial application.
 
-    t.end();
 });
