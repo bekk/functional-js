@@ -5,7 +5,7 @@ title: Function factories
 section: 3
 prev: 03-4-fluent
 name: 03-5-arity
-next: 04-partially
+next: 04-1-partial-application
 slides:
 info: |
 
