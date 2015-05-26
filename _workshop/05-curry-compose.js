@@ -19,7 +19,7 @@ slides: http://omniscientjs.github.io/workshop-slides/#9
 // single-argument functions. (Okey, still a lot of words. Let's look
 // at an example -- that should make it far more understandable.)
 
-test('self-currying', function(t) {
+describe('self-currying', function() {
     // We start by changing flip to return a functions that accept
     // either one or two parameters. If it receives one parameter, it
     // returns a new function that takes one parameter. If it receives
@@ -44,10 +44,10 @@ test('self-currying', function(t) {
         return n * n;
     });
 
-    t.deepEqual(
-        square([1,2,3]),
-        [1,4,9]
-    );
+    it('a test', function() {
+			var result = square([1,2,3]);
+			expect(result).to.deep.equal([1,4,9]);
+		});
 
     // We can also call mapWith with both parameters at once:
 
@@ -55,10 +55,10 @@ test('self-currying', function(t) {
         return n * n;
     }, [1,2,3]);
 
-    t.deepEqual(
-        squared,
-        [1,4,9]
-    );
+    it('a test', function() {
+			var result = squared;
+			expect(result).to.deep.equal([1,4,9]);
+		});
 
     // This technique is great since we sometimes know one parameter at
     // "compile-time" (such as squaring) and the other at run-time (the input).
@@ -73,22 +73,21 @@ test('self-currying', function(t) {
     var splitOn = function(chr, str) {
     };
 
-    t.deepEqual(
-        splitOn(":", "1:2:3"),
-        ['1', '2' ,'3']
-    );
+    it('a test', function() {
+			var result = splitOn(":", "1:2:3");
+			expect(result).to.deep.equal(['1', '2' ,'3']);
+		});
 
     var commaSplitter = splitOn(",");
 
-    t.deepEqual(
-        commaSplitter("2,3,4"),
-        ['2', '3', '4']
-    );
+    it('a test', function() {
+			var result = commaSplitter("2,3,4");
+			expect(result).to.deep.equal(['2', '3', '4']);
+		});
 
-    t.end();
 });
 
-test('better curry', function(t) {
+describe('better curry', function() {
     // However, we neither want nor need to write all of this stuff ourselves
     // of course! Once again, Lo-Dash to the rescue -- now with its _.curry.
 
@@ -109,10 +108,10 @@ test('better curry', function(t) {
         return n * n;
     });
 
-    t.deepEqual(
-        square([1,2,3]),
-        [1,4,9]
-    );
+    it('a test', function() {
+			var result = square([1,2,3]);
+			expect(result).to.deep.equal([1,4,9]);
+		});
 
     // And with both parameters at once:
 
@@ -120,45 +119,44 @@ test('better curry', function(t) {
         return n * n;
     }, [1,2,3]);
 
-    t.deepEqual(
-        squared,
-        [1,4,9]
-    );
+    it('a test', function() {
+			var result = squared;
+			expect(result).to.deep.equal([1,4,9]);
+		});
 
     // PROBLEM: Implement `splitOn` from the previous test using `_.curry`.
 
-    var splitOn = null;
+    var splitOn = function () {};
 
-    t.deepEqual(
-        splitOn(":", "1:2:3"),
-        ['1', '2' ,'3']
-    );
+    it('a test', function() {
+			var result = splitOn(":", "1:2:3");
+			expect(result).to.deep.equal(['1', '2' ,'3']);
+		});
 
     var commaSplitter = splitOn(",");
 
-    t.deepEqual(
-        commaSplitter("2,3,4"),
-        ['2', '3', '4']
-    );
+    it('a test', function() {
+			var result = commaSplitter("2,3,4");
+			expect(result).to.deep.equal(['2', '3', '4']);
+		});
 
-    t.end();
 })
 
-test('composing function', function(t) {
+describe('composing function', function() {
     // Sometimes we write code where the functions we use line up nicely with
     // regards to arguments.  For example, say that we want to find the first
     // element of a range (which, as you can see, is quite stupid --
     // nevertheless):
 
-    t.equal(
-        _.first(_.range(1, 10)),
-        1
-    );
+    it('a test', function() {
+			var result = _.first(_.range(1, 10));
+			expect(result).to.equal(1);
+		});
 
-    t.equal(
-        _.last(_.range(1, 10)),
-        9
-    );
+    it('a test', function() {
+			var result = _.last(_.range(1, 10));
+			expect(result).to.equal(9);
+		});
 
     // _.range receives to numbers and return an array of numbers
     // _.first receives an array and returns the first element
@@ -202,35 +200,36 @@ test('composing function', function(t) {
     var firstInRange = null;
     var lastInRange = null;
 
-    t.equal(
-        firstInRange(4, 13),
-        4
-    );
+    it('a test', function() {
+			var result = firstInRange(4, 13);
+			expect(result).to.equal(4);
+		});
 
-    t.equal(
-        lastInRange(7, 18),
-        17
-    );
+    it('a test', function() {
+			var result = lastInRange(7, 18);
+			expect(result).to.equal(17);
+		});
 
-    t.end();
 });
 
-test('curry and compose', function(t) {
+describe('curry and compose', function() {
     // Remember our curried splitOn?
 
     var splitOn = _.curry(function(chr, str) {
-        return str.split(chr);
+        //return str.split(chr);
     });
 
-    t.deepEqual(
-        splitOn(",")("1,2,3"),
-        ['1','2','3']
-    );
+    it('a test', function() {
+        log('heia')
+			var result = splitOn(",")("1,2,3");
+        log('heia etter')
+			expect(result).to.deep.equal(['1','2','3']);
+		});
 
-    t.deepEqual(
-        splitOn(",", "1,2,3"),
-        ['1','2','3']
-    );
+    it('a test', function() {
+			var result = splitOn(",", "1,2,3");
+			expect(result).to.deep.equal(['1','2','3']);
+		});
 
     // If we now combine composition and currying, we can start doing
     // interesting things:
@@ -241,10 +240,10 @@ test('curry and compose', function(t) {
     // functions is passed to the rightmost function, i.e.
     // `splitOn(",")` in this case.
 
-    t.equal(
-        beforeFirstComma("1,2,3"),
-        "1"
-    );
+    it('a test', function() {
+			var result = beforeFirstComma("1,2,3");
+			expect(result).to.equal("1");
+		});
 
     // Let's try to create something more advanced
 
@@ -253,10 +252,10 @@ test('curry and compose', function(t) {
         return _.rest(arr).join("");
     }
 
-    t.equal(
-        after("?", "test?hei"),
-        "hei"
-    );
+    it('a test', function() {
+			var result = after("?", "test?hei");
+			expect(result).to.equal("hei");
+		});
 
     var joinOn = _.curry(function(chr, arr) {
         return arr.join(chr);
@@ -275,15 +274,14 @@ test('curry and compose', function(t) {
     var composedAfter = _.compose(
     );
 
-    t.equal(
-        composedAfter("?", "test?hei"),
-        "hei"
-    );
+    it('a test', function() {
+			var result = composedAfter("?", "test?hei");
+			expect(result).to.equal("hei");
+		});
 
-    t.end();
 });
 
-test('pipelining after', function(t) {
+describe('pipelining after', function() {
     // In the JS world we're not used to reading from the right
     // as in this example from earlier:
     var composed = _.compose(_.last, _.range);
@@ -312,21 +310,21 @@ test('pipelining after', function(t) {
     var pipelined = pipeline(_.range, _.last);
 
     // And we ensure that they do the same thing:
-    t.equal(
-        composed(1,10),
-        9
-    );
+    it('a test', function() {
+			var result = composed(1,10);
+			expect(result).to.equal(9);
+		});
 
-    t.equal(
-        pipelined(1,10),
-        9
-    );
+    it('a test', function() {
+			var result = pipelined(1,10);
+			expect(result).to.equal(9);
+		});
 
     // So, let's get back to the `after` function we created in the
     // previous test. First we'll bring in the helpers:
 
     var splitOn = _.curry(function(chr, str) {
-        return str.split(chr);
+        //return str.split(chr);
     });
 
     var joinOn = _.curry(function(chr, arr) {
@@ -337,15 +335,14 @@ test('pipelining after', function(t) {
     var after = pipeline(
     );
 
-    t.equal(
-        after("?", "test?hei"),
-        "hei"
-    );
+    it('a test', function() {
+			var result = after("?", "test?hei");
+			expect(result).to.equal("hei");
+		});
 
-    t.end();
 });
 
-test('a spicy trick', function(t) {
+describe('a spicy trick', function() {
     // First our helpers for this test:
 
     var flipN = function(fn) {
@@ -356,7 +353,7 @@ test('a spicy trick', function(t) {
     var pipeline = flipN(_.compose);
 
     var splitOn = _.curry(function(chr, str) {
-        return str.split(chr);
+        //return str.split(chr);
     });
 
     var joinOn = _.curry(function(chr, arr) {
@@ -371,10 +368,10 @@ test('a spicy trick', function(t) {
         joinOn("")
     );
 
-    t.equal(
-        after("?", "test?hei"),
-        "hei"
-    );
+    it('a test', function() {
+			var result = after("?", "test?hei");
+			expect(result).to.equal("hei");
+		});
 
     // Now, we want to curry this function too. So we try with this:
 
@@ -387,19 +384,21 @@ test('a spicy trick', function(t) {
     // But, sadly this doesn't entirely work. It works when called with
     // both parameters:
 
-    t.equal(
-        after("?", "test?hei"),
-        "hei"
-    );
+    it('a test', function() {
+			var result = after("?", "test?hei");
+			expect(result).to.equal("hei");
+		});
 
     // However, it fails hard when called with one at a time and gives us:
     //
     //     [TypeError: string is not a function]
 
-    t.throws(function() {
-        after("?")("test?hei");
-    }, TypeError);
-
+    it('a test', function() {
+      function result() {
+          after("?")("test?hei");
+      }
+      expect(result()).to.throw(TypeError);
+    });
     // Why does this happen?
 
     // The problem is that the pipeline don't expect any arguments, so
@@ -415,15 +414,15 @@ test('a spicy trick', function(t) {
         )(chr, str);
     });
 
-    t.equal(
-        after2("?", "test?hei"),
-        "hei"
-    );
+    it('a test', function() {
+			var result = after2("?", "test?hei");
+			expect(result).to.equal("hei");
+		});
 
-    t.equal(
-        after2("?")("test?hei"),
-        "hei"
-    );
+    it('a test', function() {
+			var result = after2("?")("test?hei");
+			expect(result).to.equal("hei");
+		});
 
     // That works! However, now we see (chr, str) in both the function
     // definition and where we execute our function. This isn't very nice.
@@ -436,24 +435,23 @@ test('a spicy trick', function(t) {
         joinOn("")
     ), 2);
 
-    t.equal(
-        after3("?", "test?hei"),
-        "hei"
-    );
+    it('a test', function() {
+			var result = after3("?", "test?hei");
+			expect(result).to.equal("hei");
+		});
 
-    t.equal(
-        after3("?")("test?hei"),
-        "hei"
-    );
+    it('a test', function() {
+			var result = after3("?")("test?hei");
+			expect(result).to.equal("hei");
+		});
 
     // Okay, there was actually no tests to implement here, just a long
     // explanation of currying and arity. If you're still with us, you're
     // starting to understand how composition and currying works.
 
-    t.end();
 });
 
-test('parsing a url', function(t) {
+describe('parsing a url', function() {
     // Okey, this is the big one. This is where we'll see the beauty of using
     // composition and currying.
 
@@ -480,7 +478,7 @@ test('parsing a url', function(t) {
     var pipeline = flipN(_.compose);
 
     var splitOn = _.curry(function(chr, str) {
-        return str.split(chr);
+        //return str.split(chr);
     });
 
     var joinOn = _.curry(function(chr, arr) {
@@ -498,10 +496,10 @@ test('parsing a url', function(t) {
 
     var parse = pipeline(after("?"), splitOn("&"));
 
-    t.deepEqual(
-        parse(url),
-        ['product=widget', 'color=red', 'size=6']
-    );
+    it('a test', function() {
+			var result = parse(url);
+			expect(result).to.deep.equal(['product=widget', 'color=red', 'size=6']);
+		});
 
     // Okey, we're getting somewhere
 
@@ -541,28 +539,28 @@ test('parsing a url', function(t) {
         ['size', '6']
     ];
 
-    t.deepEqual(
-        pairOn("=", values),
-        res,
-        "pairOn can be called with both arguments"
-    );
+    it('a test', function() {
+			var result =         pairOn("=", values);
+			expect(result).to.deep.equal(        res);
+		});
 
-    t.deepEqual(
-        pairOn("=")(values),
-        res,
-        "pairOn must be curried"
-    );
+    it('a test', function() {
+			var result =         pairOn("=")(values);
+			expect(result).to.deep.equal(        res);
+		});
 
     // And then, behold the glory of _.object
 
-    t.deepEqual(
-        _.object(pairOn("=", values)),
-        {
-            product: "widget",
-            color: "red",
-            size: "6"
-        }
-    );
+    it('a test', function() {
+      var result = _.object(pairOn("=", values))
+      expect(result).to.deepEqual(
+          {
+              product: "widget",
+              color: "red",
+              size: "6"
+          }
+      );
+    });
 
     // Nice!
 
@@ -572,14 +570,16 @@ test('parsing a url', function(t) {
     var parseUrl = pipeline(
     );
 
-    t.deepEqual(
-        parseUrl(url),
-        {
-            product: "widget",
-            color: "red",
-            size: "6"
-        }
-    );
+    it('a test', function() {
+      var result = parseUrl(url);
+      expect(result).to.deepEqual(
+          {
+              product: "widget",
+              color: "red",
+              size: "6"
+          }
+      );
+    });
 
     // BOOM!
 
@@ -591,14 +591,17 @@ test('parsing a url', function(t) {
     var parseUrl2 = _.compose(
     );
 
-    t.deepEqual(
-        parseUrl2(url),
-        {
-            product: "widget",
-            color: "red",
-            size: "6"
-        }
-    );
+    it('a test', function() {
+      var result = parseUrl2(url);
+      expect(result).to.deepEqual(
+          {
+              product: "widget",
+              color: "red",
+              size: "6"
+          }
+      );
+    });
+
 
     // FP allows you to elevate your level of abstraction, seeing
     // problems with better clarity. For more about this, I recommend
@@ -609,7 +612,6 @@ test('parsing a url', function(t) {
     // FP makes code understandable by minimizing moving parts."
     //   - Michael Feathers
 
-    t.end();
 });
 
 // BAM! Now it's time to take a break — your brain is overflowing with crazy.
