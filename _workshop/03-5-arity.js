@@ -1,7 +1,7 @@
 ---
 layout: workshop
 collection: workshop
-title: Function factories
+title: Function arity
 section: 3
 prev: 03-4-fluent
 name: 03-5-arity

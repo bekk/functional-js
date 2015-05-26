@@ -1,7 +1,7 @@
 ---
 layout: workshop
 collection: workshop
-title: Function factories
+title: Higher order functions
 section: 3
 prev: 03-1-factories
 name: 03-2-higher-order

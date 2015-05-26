@@ -1,7 +1,7 @@
 ---
 layout: workshop
 collection: workshop
-title: Part 4
+title: Partial application
 section: 4
 prev: 03-5-arity
 name: 04-1-partial-application

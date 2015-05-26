@@ -1,10 +1,11 @@
 ---
 layout: workshop
 collection: workshop
-title: Part 4
+title: Create functions from functions
 section: 4
 prev: 04-1-partial-application
-name: 05-curry-compose
+name: 04-2-functions-from-functions
+next: 05-curry-compose
 slides:
 info: |
 ---

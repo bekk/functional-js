@@ -1,7 +1,7 @@
 ---
 layout: workshop
 collection: workshop
-title: Function factories
+title: Functions with functions
 section: 3
 prev: 03-2-higher-order
 name: 03-3-functions-with-functions

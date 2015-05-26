@@ -1,7 +1,7 @@
 ---
 layout: workshop
 collection: workshop
-title: Function factories
+title: Fluent interfaces
 section: 3
 prev: 03-3-functions-with-functions
 name: 03-4-fluent
