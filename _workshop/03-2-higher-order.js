@@ -1,0 +1,48 @@
+---
+layout: workshop
+collection: workshop
+title: Function factories
+section: 3
+prev: 03-1-factories
+name: 03-2-higher-order
+next: 03-3-functions-with-functions
+slides:
+info: |
+
+---
+describe('function taking function as argument', function() {
+    // Sometimes we want to take a function as an argument.
+
+    // PROBLEM: Create a once factory that receives a function that
+    // will at most be called once. If already run, return the result
+    // of the first invocation on every succeeding invocation.
+
+    function once(fn) {
+    }
+
+    var win = once(function(name) {
+        return name + ' is winning';
+    });
+
+    it('a test', function() {
+			var result = win('kim');
+			expect(result).to.equal('kim is winning');
+		});
+    it('a test', function() {
+			var result = win('kjetil');
+			expect(result).to.equal('kim is winning');
+		});
+    it('a test', function() {
+			var result = win('stian');
+			expect(result).to.equal('kim is winning');
+		});
+    it('a test', function() {
+			var result = win('mikael');
+			expect(result).to.equal('kim is winning');
+		});
+    // I WON!
+
+    // And we have now decorated a function, i.e. wrapped an existing functions
+    // with new functionality.
+
+});

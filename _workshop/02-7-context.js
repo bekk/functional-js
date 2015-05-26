@@ -5,7 +5,7 @@ title: Applicative functions with context
 section: 2
 prev: 02-6-point-free
 name: 02-7-context
-next: 03-functions
+next: 03-1-factories
 slides:
 info: |
   Sometimes you want to use map, filter, reduce or other functions
