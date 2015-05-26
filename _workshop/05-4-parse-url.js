@@ -1,11 +1,11 @@
 ---
 layout: workshop
 collection: workshop
-title: Case: Parse URL
+title: Case - Parse URL
 section: 5
 prev: 05-3-pipelines
 name: 05-4-parse-url
-name: 06-immutability
+next: 06-immutability
 slides:
 notes: |
 
