@@ -6,13 +6,18 @@ permalink: /workshop/
 section: 0
 start: true
 name: 00-introduction
-next: 01-intro
+next: 01-1-context
 slides:
-info: >
-  Welcome to a workshop for learning functional programming in JavaScript. This
-  workshop runs in your browser and assignments are written as tests that you
-  need to make pass. When you have all passing test you can move on to the next
-  task. There will be additional information in the comments.
+info: |
+  Welcome to a workshop for learning functional programming in JavaScript.
+
+  This workshop runs in your browser. Assignments are written as tests that
+  you need to make pass. When you have all passing test you can move on to the
+  next task. There will be additional information in the comments.
+
+  If you at any time need to freshen up your JS-fu, start any Google
+  search with "mdn" and you will always end up at the amazing Mozilla
+  Developer Network, which has the best JS explanations around.
 ---
 
 // You can create functions like this:

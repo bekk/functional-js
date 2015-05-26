@@ -3,8 +3,8 @@ layout: workshop
 collection: workshop
 title: Part 2
 section: 2
+prev: 01-3-prototype
 name: 02-applicative
-prev: 01-intro
 next: 03-functions
 slides: http://omniscientjs.github.io/workshop-slides/#9
 ---

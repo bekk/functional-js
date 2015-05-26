@@ -20,7 +20,7 @@
 
       {% if page.info %}
         <h2>Information</h2>
-        <p class="info">{{page.info}}</p>
+        <div class="info">{{page.info | markdownify}}</div>
       {% endif %}
 
       <div class="editor" data-is-large=true><textarea>{{ content }}</textarea></div>
