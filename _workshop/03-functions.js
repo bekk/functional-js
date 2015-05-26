@@ -27,12 +27,12 @@ describe('function factories!', function() {
 
     it('a test', function() {
 			var result =         addTwo(40);
-			expect(result).to.equal(        42);
+			expect(result).to.equal(42);
 		});;
 
     it('a test', function() {
 			var result =         addTwo(3);
-			expect(result).to.equal(        5);
+			expect(result).to.equal(5);
 		});;
 
     // Seems simple enough, but it's a powerful technique that we will
@@ -297,7 +297,7 @@ describe('understanding arity', function() {
 
     it('a test', function() {
 			var result =         parsed2;
-			expect(result).to.deep.equal(        [1,2,3]);
+			expect(result).to.deep.equal([1,2,3]);
 		});
 
     // However, there are a couple of other solutions. We can for example
@@ -316,7 +316,7 @@ describe('understanding arity', function() {
 
     it('a test', function() {
 			var result =         parsed3;
-			expect(result).to.deep.equal(        [1,2,3]);
+			expect(result).to.deep.equal([1,2,3]);
 		});
 
     // However, unary might be to simple in this case, as we actually
