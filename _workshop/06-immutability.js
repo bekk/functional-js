@@ -4,7 +4,7 @@ collection: workshop
 title: Part 6
 section: 6
 name: 06-immutability
-next: 05-curry-compose
+prev: 05-curry-compose
 next: 07-collections
 slides: http://omniscientjs.github.io/workshop-slides/#9
 ---
@@ -30,7 +30,7 @@ var sum = reduceWith(plus);
 // We're changing course for some tests, taking a good look at the
 // problems of mutability.
 
-test('cloning away the mutability', function(t) {
+describe('cloning away the mutability', function() {
     // Let's say that we have the following cache
     // implementation:
     var cache = (function() {
@@ -49,11 +49,10 @@ test('cloning away the mutability', function(t) {
 
     cache.set("test", 1);
 
-    t.equal(
-        cache.get("test"),
-        1,
-        'cache returns saved value'
-    );
+    it('a test', function() {
+			var result = cache.get("test");
+			expect(result).to.equal(1);
+		});
 
     // However, there are some problems:
 
@@ -89,10 +88,10 @@ test('cloning away the mutability', function(t) {
 
     var val = {};
 
-    t.ok(
-        val !== _.clone(val),
-        'cloned object has new reference'
-    );
+    it('a test', function() {
+			var result = val !== _.clone(val);
+			expect(result).to.ok;
+		});
 
     // I.e. we get a new reference. There is one problem however:
 
@@ -106,16 +105,16 @@ test('cloning away the mutability', function(t) {
     otherLocation.county.name = 'Oslo';
 
     // This is good:
-    t.ok(
-        location !== otherLocation,
-        'cloned location gets a new reference'
-    );
+    it('a test', function() {
+			var result = location !== otherLocation;
+			expect(result).to.ok;
+		});
 
     // This, however, is NOT good:
-    t.equal(
-        location.county.name, 'Oslo',
-        'cloned location overrides its source object'
-    );
+    it('a test', function() {
+			var result = location.county.name;
+			expect(result).to.equal('Oslo');
+		});
 
     // Oups. There is a new reference on the base object, but the content is
     // not cloned and therefore still have the reference as before. It can
@@ -132,33 +131,59 @@ test('cloning away the mutability', function(t) {
     var thirdLocation = _.cloneDeep(newLocation);
     thirdLocation.county.name = 'Oslo';
 
-    t.ok(
-        location !== otherLocation,
-        'cloned location gets a new reference'
-    );
-    t.equal(
-        newLocation.county.name, 'Nordland',
-        'cloned location does not override its source object'
-    );
+    it('a test', function() {
+			var result = location !== otherLocation;
+			expect(result).to.ok;
+		});
+    it('a test', function() {
+			var result = newLocation.county.name;
+			expect(result).to.equal('Nordland');
+		});
 
     // PROBLEM: Fix the `cache` code above, so the following tests run.
 
-    t.equal(obj.name, "kim", "obj should contain name");
-    t.equal(user.name, "kim", "user should contain name");
-    t.equal(user2.name, "kim", "user2 should contain name");
+    it('a test', function() {
+			var result = obj.name;
+			expect(result).to.equal('kim');
+		});
+    it('a test', function() {
+			var result = user.name;
+			expect(result).to.equal("kim");
+		});
+    it('a test', function() {
+			var result = user2.name;
+			expect(result).to.equal("kim");
+		});
 
-    t.equal(obj.wat, "crazy", "obj should contain wat");
-    t.equal(user.wat, undefined, "user should not contain wat");
-    t.equal(user2.wat, undefined, "user2 should not contain wat");
+    it('a test', function() {
+			var result = obj.wat;
+			expect(result).to.equal("crazy");
+		});
+    it('a test', function() {
+			var result = user.wat;
+			expect(result).to.equal(undefined);
+		});
+    it('a test', function() {
+			var result = user2.wat;
+			expect(result).to.equal(undefined);
+		});
 
-    t.equal(obj.someValue, undefined, "obj should not contain someValue");
-    t.equal(user.someValue, "what?", "user should contain someValue");
-    t.equal(user2.someValue, undefined, "user2 should not contain someValue");
+    it('a test', function() {
+			var result = obj.someValue;
+			expect(result).to.equal(undefined);
+		});
+    it('a test', function() {
+			var result = user.someValue;
+			expect(result).to.equal("what?");
+		});
+    it('a test', function() {
+			var result = user2.someValue;
+			expect(result).to.equal(undefined);
+		});
 
-    t.end();
 });
 
-test("prevent cache changes", function(t) {
+describe("prevent cache changes", function() {
     // should we at all be able to change the object we received
     // from the cache?
 
@@ -188,24 +213,35 @@ test("prevent cache changes", function(t) {
         };
     })();
 
-    t.throws(function() {
+    it('a test', function() {
+      function result() {
         cache.test = "wat?";
-    }, TypeError, "changing the cache object is not allowed");
+      }
+
+      expect(result()).to.throw(TypeError);
+    });
 
     var obj = { name: "kim" };
     cache.set("user", obj);
 
     var user = cache.get("user");
 
-    t.throws(function() {
+    it('a test', function() {
+      function result() {
         user.name = "kjetil";
-    }, TypeError, "should not allow existing key to be change");
+      }
 
-    t.throws(function() {
+      expect(result()).to.throw(TypeError);
+    });
+
+    it('a test', function() {
+      function result() {
         user.someValue = "test";
-    }, TypeError, "should not allow new keys to be added");
+      }
 
-    t.end();
+      expect(result()).to.throw(TypeError);
+    });
+
 });
 
 // We have been playing with immutable data. Thankfully there are now several
@@ -220,8 +256,6 @@ test("prevent cache changes", function(t) {
 // are great alternatives (mori far more stable, but also quite a bit larger in
 // size).
 
-var Immutable = require('immutable');
-
 // This library has an API that closely mirrors that of Array, Map, and
 // Set in pure JavaScript.
 
@@ -233,7 +267,7 @@ var Immutable = require('immutable');
 // This is the API documentation:
 // https://github.com/facebook/immutable-js/blob/master/type-definitions/Immutable.d.ts
 
-test('cache using immutable.js', function(t) {
+describe('cache using immutable.js', function() {
     // Basic introduction to Immutable-js:
 
     // In this test we'll be working with maps. We can create a map from an
@@ -245,18 +279,24 @@ test('cache using immutable.js', function(t) {
     // We can export a JavaScript object from the Immutable.Map using `toJS`:
     var obj2 = map.toJS();
 
-    t.deepEqual(obj, obj2);
+    it('a test', function() {
+			var result = obj;
+			expect(result).to.deep.equal( obj2);
+		});
 
     // However,
-    t.ok(
-        obj !== obj2,
-        'the object from immutable has a new reference'
-    );
+    it('a test', function() {
+			var result = obj !== obj2;
+			expect(result).to.ok;
+		});
 
     // We can set new key/value pairs on the map:
 
     map = map.set('user', 10);
-    t.equal(map.get('user'), 10);
+    it('a test', function() {
+			var result = map.get('user');
+			expect(result).to.equal(10);
+		});
 
     // We can also set objects:
 
@@ -268,16 +308,25 @@ test('cache using immutable.js', function(t) {
 
     map = map.set('obj', deepObj);
 
-    t.deepEqual(map.get('obj'), deepObj);
+    it('a test', function() {
+			var result = map.get('obj');
+			expect(result).to.deep.equal( deepObj);
+		});
 
     // But here there's something interesting
-    t.ok(map.get('obj') === deepObj);
+    it('a test', function() {
+			var result = map.get('obj') === deepObj;
+			expect(result).to.ok;
+		});
 
     // This means that we can change the content:
 
     deepObj.location.name = "Oslo";
 
-    t.equal(map.get('obj').location.name, "Oslo");
+    it('a test', function() {
+			var result = map.get('obj').location.name;
+			expect(result).to.equal("Oslo");
+		});
 
     // IMMUTABILITY!? WHERE!?
 
@@ -292,10 +341,10 @@ test('cache using immutable.js', function(t) {
     // We need to call `toJS` when fetching this object to make it a JavaScript
     // object again.
 
-    t.equal(
-        map.get('obj').toJS().location.name,
-        "Oslo"
-    );
+    it('a test', function() {
+			var result = map.get('obj').toJS().location.name;
+			expect(result).to.equal("Oslo");
+		});
 
     // PROBLEM: Implement the cache from the last test using
     // Maps in immutable-js: https://github.com/facebook/immutable-js
@@ -303,6 +352,7 @@ test('cache using immutable.js', function(t) {
     var cache = (function() {
         return {
             get: function(key) {
+              return {}
             },
             set: function(key, value) {
             }
@@ -326,26 +376,61 @@ test('cache using immutable.js', function(t) {
 
     var user2 = cache.get("user");
 
-    t.equal(obj.name, "kim", "obj should contain name");
-    t.equal(user.name, "kim", "user should contain name");
-    t.equal(user2.name, "kim", "user2 should contain name");
+    it('a test', function() {
+			var result = obj.name;
+			expect(result).to.equal("kim");
+		});
+    it('a test', function() {
+			var result = user.name;
+			expect(result).to.equal("kim");
+		});
+    it('a test', function() {
+			var result = user2.name;
+			expect(result).to.equal("kim");
+		});
 
-    t.equal(obj.location.name, "Trondheim", "obj location should be Trondheim");
-    t.equal(user.location.name, "Oslo", "user location should be Oslo");
-    t.equal(user2.location.name, "Oslo", "user2 location should be Oslo");
+    it('a test', function() {
+			var result = obj.location.name;
+			expect(result).to.equal("Trondheim");
+		});
+    it('a test', function() {
+			var result = user.location.name;
+			expect(result).to.equal("Oslo");
+		});
+    it('a test', function() {
+			var result = user2.location.name;
+			expect(result).to.equal("Oslo");
+		});
 
-    t.equal(obj.wat, "crazy", "obj should contain wat");
-    t.equal(user.wat, undefined, "user should not contain wat");
-    t.equal(user2.wat, undefined, "user2 should not contain wat");
+    it('a test', function() {
+			var result = obj.wat;
+			expect(result).to.equal("crazy");
+		});
+    it('a test', function() {
+			var result = user.wat;
+			expect(result).to.equal(undefined);
+		});
+    it('a test', function() {
+			var result = user2.wat;
+			expect(result).to.equal(undefined);
+		});
 
-    t.equal(obj.someValue, undefined, "obj should not contain someValue");
-    t.equal(user.someValue, "what?", "user should contain someValue");
-    t.equal(user2.someValue, undefined, "user2 should not contain someValue");
+    it('a test', function() {
+			var result = obj.someValue;
+			expect(result).to.equal(undefined);
+		});
+    it('a test', function() {
+			var result = user.someValue;
+			expect(result).to.equal("what?");
+		});
+    it('a test', function() {
+			var result = user2.someValue;
+			expect(result).to.equal(undefined);
+		});
 
-    t.end();
 });
 
-test('undo/redo with immutable.js', function(t) {
+describe('undo/redo with immutable.js', function() {
     // PROBLEM: Implement an object that handles undo and redo
 
     var StateHandler = function() {
@@ -371,116 +456,127 @@ test('undo/redo with immutable.js', function(t) {
 
     var state = StateHandler();
 
-    t.equal(
-        state.canUndo(), false,
-        'Cannot undo as no changes yet'
-    );
-    t.equal(
-        state.canRedo(), false,
-        'Cannot redo as no undos yet'
-    );
+    it('a test', function() {
+			var result = state.canUndo();
+			expect(result).to.equal(false);
+		});
+    it('a test', function() {
+			var result = state.canRedo();
+			expect(result).to.equal(false);
+		});
 
     state.set({ name: 'Kim' });
     state.set({ name: 'Kjetil' });
 
-    t.equal(
-        state.canUndo(), true,
-        'Changes performed, we can now undo'
-    );
-    t.equal(
-        state.canRedo(), false,
-        'Still no undos, so cannot redo yet'
-    );
+    it('a test', function() {
+			var result = state.canUndo();
+			expect(result).to.equal(true);
+		});
+    it('a test', function() {
+			var result = state.canRedo();
+			expect(result).to.equal(false);
+		});
 
     state.undo();
 
     var obj = state.get()
-    t.equal(obj.name, 'Kim');
+    it('a test', function() {
+			var result = obj.name;
+			expect(result).to.equal('Kim');
+		});
 
-    t.equal(
-        state.canUndo(), true,
-        'We can undo after undo as we still have earlier changes'
-    );
-    t.equal(
-        state.canRedo(), true,
-        'We have performed an undo, so now we can redo'
-    );
+    it('a test', function() {
+			var result = state.canUndo();
+			expect(result).to.equal(true);
+		});
+    it('a test', function() {
+			var result = state.canRedo();
+			expect(result).to.equal(true);
+		});
 
     state.undo();
 
     var obj2 = state.get()
-    t.ok(
-        obj2 == null,
-        "We didn't have a user to begin with"
-    );
+    it('a test', function() {
+			var result = obj2 == null;
+			expect(result).to.ok;
+		});
 
-    t.equal(
-        state.canUndo(), false,
-        "We're at the starting position, cannot undo"
-    );
-    t.equal(
-        state.canRedo(), true,
-        "We can still redo"
-    );
+    it('a test', function() {
+			var result = state.canUndo();
+			expect(result).to.equal(false);
+		});
+    it('a test', function() {
+			var result = state.canRedo();
+			expect(result).to.equal(true);
+		});
 
     state.redo();
 
     var obj3 = state.get()
-    t.equal(obj3.name, 'Kim');
+    it('a test', function() {
+			var result = obj3.name;
+			expect(result).to.equal('Kim');
+		});
 
-    t.equal(
-        state.canUndo(), true,
-        "Now we can undo the redo"
-    );
-    t.equal(
-        state.canRedo(), true,
-        "We can also still redo"
-    );
+    it('a test', function() {
+			var result = state.canUndo();
+			expect(result).to.equal(true);
+		});
+    it('a test', function() {
+			var result = state.canRedo();
+			expect(result).to.equal(true);
+		});
 
     state.redo();
 
     var obj4 = state.get()
-    t.equal(obj4.name, 'Kjetil');
+    it('a test', function() {
+			var result = obj4.name;
+			expect(result).to.equal('Kjetil');
+		});
 
-    t.equal(
-        state.canUndo(), true,
-        "And we can still undo"
-    );
-    t.equal(
-        state.canRedo(), false,
-        "We're at the latest state, cannot redo"
-    );
+    it('a test', function() {
+			var result = state.canUndo();
+			expect(result).to.equal(true);
+		});
+    it('a test', function() {
+			var result = state.canRedo();
+			expect(result).to.equal(false);
+		});
 
     state.undo();
 
     var obj5 = state.get()
-    t.equal(obj5.name, 'Kim');
+    it('a test', function() {
+			var result = obj5.name;
+			expect(result).to.equal('Kim');
+		});
 
-    t.equal(
-        state.canUndo(), true,
-        "We still have changes that can be undo-ed"
-    );
-    t.equal(
-        state.canRedo(), true,
-        "And we can redo back to the former state"
-    );
+    it('a test', function() {
+			var result = state.canUndo();
+			expect(result).to.equal(true);
+		});
+    it('a test', function() {
+			var result = state.canRedo();
+			expect(result).to.equal(true);
+		});
 
     state.set({ name: 'Stian' });
     state.set({ name: 'Mikael' });
 
-    t.equal(
-        state.canUndo(), true,
-        "After updating state we can undo"
-    );
-    t.equal(
-        state.canRedo(), false,
-        "We cannot redo after updating state"
-    );
+    it('a test', function() {
+			var result = state.canUndo();
+			expect(result).to.equal(true);
+		});
+    it('a test', function() {
+			var result = state.canRedo();
+			expect(result).to.equal(false);
+		});
 
-    t.end();
 });
 
-test('lazy, yo (these might be a little slow)', function(t) {
+describe('lazy, yo (these might be a little slow)', function() {
     // Lazy evaluation -- deferral of expression evaluation for as long
     // as possible -- is a feature of many functional programming
     // languages. Lazy collections deliver their elements as needed
@@ -509,10 +605,10 @@ test('lazy, yo (these might be a little slow)', function(t) {
         return x > 10;
     });
 
-    t.deepEqual(
-        res.toJS(), [2,4,6,8,10],
-        'finds numbers up to and including 10 divisable by 2'
-    );
+    it('a test', function() {
+			var result = res.toJS();
+			expect(result).to.deep.equal([2,4,6,8,10]);
+		});
 
     var factorOf = _.curry(function(base, num) {
         return base % num == 0;
@@ -532,27 +628,23 @@ test('lazy, yo (these might be a little slow)', function(t) {
 
     var perfectNumbers = null;
 
-    t.equal(
-        perfectNumbers.first(),
-        6,
-        'finds first perfect number'
-    );
+    it('a test', function() {
+			var result = perfectNumbers.first();
+			expect(result).to.equal(6);
+		});
 
-    t.equal(
-        perfectNumbers.skip(1).first(),
-        28,
-        'finds second perfect number'
-    );
+    it('a test', function() {
+			var result = perfectNumbers.skip(1).first();
+			expect(result).to.equal(28);
+		});
 
     // PROBLEM: Join the second and third perfect number on ","
 
-    t.equal(
-        null,
-        '28,496',
-        'joins second and third perfect number'
-    );
+    it('a test', function() {
+			var result = null;
+			expect(result).to.equal('28,496');
+		});
 
-    t.end();
 });
 
 // If you want to learn more about the value of immutability, David

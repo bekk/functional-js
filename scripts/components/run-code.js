@@ -107,7 +107,7 @@ const runCode = function () {
     }
 
     const fn = Function.apply(null, [
-      '_', 'log', 'books',
+      '_', 'log', 'books', 'Immutable',
       'setTimeout', 'setInterval',
       'chai', 'expect',
       'describe', 'xdescribe',
@@ -119,7 +119,7 @@ const runCode = function () {
     const it = context.it.bind(context);
     it.only = context.it.only.bind(context);
 
-    fn(_, log, books,
+    fn(_, log, books, Immutable,
        newSetTimeout, newSetInterval,
        chai, chai.expect,
        context.describe.bind(context), context.xdescribe.bind(context),
