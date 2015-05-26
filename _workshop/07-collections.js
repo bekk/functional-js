@@ -15,13 +15,16 @@ slides: http://omniscientjs.github.io/workshop-slides/#9
 // tasks requiring that some operation happen on many items in a
 // collection.
 
-test('pluck', function(t) {
+describe('pluck', function() {
     // How many unique authors are there?
     var authors = _.uniq(_.map(books, function(book) {
         return book.author;
     }));
 
-    t.equal(authors.length, 25);
+    it('a test', function() {
+			var result = authors.length;
+			expect(result).to.equal(25);
+		});
 
     // Often we will see this patterns with map -- only getting the
     // value of a key for each item. Generally, there are many nice
@@ -29,19 +32,24 @@ test('pluck', function(t) {
     // pluck:
     var authors2 = _.uniq(_.pluck(books, 'author'));
 
-    t.equal(authors2.length, 25);
+    it('a test', function() {
+			var result = authors2.length;
+			expect(result).to.equal(25);
+		});
 
     // PROBLEM: Okey, that was all authors. Now, how many unique authors have
     // received a 5 star rating on atleast one book?
 
     var fiveStarAuthors = null;
 
-    t.equal(fiveStarAuthors.length, 7);
+    it('a test', function() {
+			var result = fiveStarAuthors.length;
+			expect(result).to.equal(7);
+		});
 
-    t.end();
 });
 
-test('chain', function(t) {
+describe('chain', function() {
     // On the last test you might have have ended up with something
     // like this:
 
@@ -72,15 +80,15 @@ test('chain', function(t) {
     // Just to show you they are equal (well, except for actually applying
     // authors later in the composed version -- point-free, remember).
 
-    t.deepEqual(
-        fiveStarAuthors,
-        fiveStarAuthors2
-    );
+    it('a test', function() {
+			var result = fiveStarAuthors;
+			expect(result).to.deep.equal(fiveStarAuthors2);
+		});
 
-    t.deepEqual(
-        fiveStarAuthors2,
-        fiveStarAuthors3(books)
-    );
+    it('a test', function() {
+			var result = fiveStarAuthors2;
+			expect(result).to.deep.equal(fiveStarAuthors3(books));
+		});
 
     // As Lo-Dash and Underscore are not too well suited for functional
     // programming out-of-the-box, especially because of the wrong
@@ -95,10 +103,10 @@ test('chain', function(t) {
         .uniq()
         .value();
 
-    t.deepEqual(
-        fiveStarAuthors,
-        fiveStarAuthors4
-    );
+    it('a test', function() {
+			var result = fiveStarAuthors;
+			expect(result).to.deep.equal(fiveStarAuthors4);
+		});
 
     // It doesn't look too bad, but there is one major negative aspect
     // of this: it only works for the functions that are made available
@@ -120,10 +128,10 @@ test('chain', function(t) {
         .uniq()
         .value();
 
-    t.deepEqual(
-        fiveStarAuthors,
-        fiveStarAuthors4
-    );
+    it('a test', function() {
+			var result = fiveStarAuthors;
+			expect(result).to.deep.equal(fiveStarAuthors4);
+		});
 
     // PROBLEM: Use chaining to find the total number of pages on 4
     // star books
@@ -131,12 +139,14 @@ test('chain', function(t) {
     var pages = _.chain(books)
         .value();
 
-    t.equal(pages, 4259);
+    it('a test', function() {
+			var result = pages;
+			expect(result).to.equal(4259);
+		});
 
-    t.end();
 });
 
-test('grouping, sorting and counting', function(t) {
+describe('grouping, sorting and counting', function() {
     // PROBLEM: Sort authors descending on their number of books and return the
     // 3 most read authors
 
@@ -152,19 +162,14 @@ test('grouping, sorting and counting', function(t) {
     var authors = _.chain(books)
         .value();
 
-    t.deepEqual(
-        authors,
-        [
-            'Martin, George R.R.',
-            'Gaiman, Neil',
-            'Taleb, Nassim Nicholas'
-        ]
-    );
+    it('a test', function() {
+			var result = authors;
+			expect(result).to.deep.equal(['Martin, George R.R.', 'Gaiman, Neil', 'Taleb, Nassim Nicholas']);
+		});
 
     // In the end we should not need to handle state at all to solve this
     // problem. This code, written imperatively, would have been very different.
 
-    t.end();
 });
 
 // And that's just about it. We'll now finish up at an interesting point --
@@ -174,7 +179,7 @@ test('grouping, sorting and counting', function(t) {
 // in the end growing too large and killing everything. With EcmaScript 6 comes
 // proper tail-calls to JavaScript, finally enabling us to use recursion more.
 
-test('recursion', function(t) {
+describe('recursion', function() {
     // Let's look at a couple of recursive functions.
 
     function len(arr) {
@@ -185,9 +190,18 @@ test('recursion', function(t) {
         }
     }
 
-    t.equal(len([]), 0);
-    t.equal(len([1000]), 1);
-    t.equal(len([1,2,3]), 3);
+    it('a test', function() {
+			var result = len([]);
+			expect(result).to.equal(0);
+		});
+    it('a test', function() {
+			var result = len([1000]);
+			expect(result).to.equal(1);
+		});
+    it('a test', function() {
+			var result = len([1,2,3]);
+			expect(result).to.equal(3);
+		});
 
     // ... the rules of thumb
     function map(list, cb) {
@@ -213,7 +227,10 @@ test('recursion', function(t) {
         return num * num;
     });
 
-    t.deepEqual(res, [1,4,9,16,25]);
+    it('a test', function() {
+			var result = res;
+			expect(result).to.deep.equal([1,4,9,16,25]);
+		});
 
     // PROBLEM: Implement filter using recursion.
 
@@ -224,9 +241,11 @@ test('recursion', function(t) {
         return num % 2 == 0;
     });
 
-    t.deepEqual(res, [2,4]);
+    it('a test', function() {
+			var result = res;
+			expect(result).to.deep.equal([2,4]);
+		});
 
-    t.end();
 });
 
 // THE END!
