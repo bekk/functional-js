@@ -7,7 +7,7 @@ prev: 04-2-functions-from-functions
 name: 05-1-currying
 next: 05-2-compose
 slides:
-notes: |
+info: |
 
 ---
 // Okay, the generalization made it a little bit easier to create our

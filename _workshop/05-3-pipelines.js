@@ -7,7 +7,7 @@ prev: 05-2-compose
 name: 05-3-pipelines
 next: 05-4-parse-url
 slides:
-notes: |
+info: |
 
 ---
 describe('pipelining after', function() {

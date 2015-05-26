@@ -7,7 +7,7 @@ prev: 05-4-parse-url
 name: 06-1-sealed
 next: 06-2-immutable
 slides:
-notes: |
+info: |
 
 ---
 

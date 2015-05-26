@@ -7,7 +7,7 @@ prev: 05-1-currying
 name: 05-2-compose
 next: 05-3-pipelines
 slides:
-notes: |
+info: |
 
 ---
 describe('composing function', function() {

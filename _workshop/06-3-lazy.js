@@ -7,9 +7,24 @@ prev: 06-2-immutable
 name: 06-3-lazy
 next: 07-collections
 slides:
-notes: |
+info: |
 
 ---
+function flip(fn) {
+    return function(first, second) {
+        return fn.call(this, second, first);
+    };
+};
+
+var reduceWith = _.curry(flip(_.reduce));
+var filterWith = _.curry(flip(_.filter));
+
+var plus = function(a,b) {
+    return a + b;
+}
+
+var sum = reduceWith(plus);
+
 describe('lazy, yo (these might be a little slow)', function() {
     // Lazy evaluation -- deferral of expression evaluation for as long
     // as possible -- is a feature of many functional programming

@@ -7,7 +7,7 @@ prev: 06-1-sealed
 name: 06-2-immutable
 next: 06-3-lazy
 slides:
-notes: |
+info: |
 
 ---
 // We have been playing with immutable data. Thankfully there are now several
