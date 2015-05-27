@@ -50,11 +50,8 @@ describe('point-free style', function() {
 });
 
 // PROBLEM: Sum the array using `_.reduce`, following a point-free style.
+// (You might need to create a helper function)
 describe('point-free _.reduce', function() {
-  function add(acc, el) {
-    return acc + el;
-  }
-
   it('works as normal _.reduce', function() {
     var nums = [1,2,3,4,5];
 

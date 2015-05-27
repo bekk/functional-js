@@ -19,8 +19,13 @@ info: |
     });
   ```
 
+  Fluent apis is often referred to as method chaining. and we use it to achieve
+  code that is as fluently readable as possible and thus quicker to understand.
+  In the jQuery example above, all functions return `this` so we can keep
+  calling methods that exists on `$('#test')`.
+
   Let us create a small helper that simplifies the development of
-  such fluent apis
+  such fluent apis.
 ---
 // First, to get an understanding of how we can create a simple
 // helper for these fluent interfaces, we start with an entirely
@@ -40,19 +45,19 @@ describe('maybe', function() {
   });
 
   it('should return when called with an argument', function() {
-		var result = exclamate('test');
-		expect(result).to.equal('test!');
-	});
+    var result = exclamate('test');
+    expect(result).to.equal('test!');
+  });
 
   it('should not return when called with null argument', function() {
-		var result = exclamate(null);
-		expect(result).to.equal(undefined);
-	});
+    var result = exclamate(null);
+    expect(result).to.equal(undefined);
+  });
 
   it('should not return when called without argument', function() {
-		var result = exclamate();
-		expect(result).to.equal(undefined);
-	});
+    var result = exclamate();
+    expect(result).to.equal(undefined);
+  });
 
   // We have now created a helper than only calls the received function is
   // the input is neither null nor undefined. Yet another decorator, that is.
@@ -109,6 +114,6 @@ describe('fluent', function() {
         })
         .value;
 
-		expect(result).to.equal('somevalue');
-	});
+    expect(result).to.equal('somevalue');
+  });
 });

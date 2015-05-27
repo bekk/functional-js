@@ -23,10 +23,10 @@ info: |
 ---
 
 describe('_.reduce', function() {
-    // We'll start by going back to reduce. Compared to the built-in
-    // reduce, _.reduce does not need a starting value, which means
-    // it's actually a fold not a reduce. (In fact, in Lo-Dash _.reduce
-    // is aliased to _.foldl, i.e. fold from the left.)
+    // We'll start by going back to reduce. As for the built-in reduce,
+    // _.reduce does not need a starting value. (Reduce without an initial
+    // value is actually a fold, and in fact, in Lo-Dash _.reduce is aliased
+    // to _.foldl, i.e. fold from the left.)
 
     function join(arr, chr) {
       return _.reduce(arr, function(memo, str) {

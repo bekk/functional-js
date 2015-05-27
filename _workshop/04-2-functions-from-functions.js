@@ -40,8 +40,8 @@ describe('partialSquare', function() {
   });
 });
 
-// Note that we never specify the array argument in `square2`, but we need
-// to specify it in `square`. Again, point-free style.
+// Note that we never specify the array argument in `square2`, but we need to
+// specify it in `square` (where it's named `arr`). Again, point-free style.
 
 // PROBLEM: Use _.partialRight to create a function that filters
 // all odd values from an array
@@ -50,9 +50,9 @@ var onlyEven = null;
 
 describe('onlyEven', function() {
   it('should only return even numbers', function() {
-		var result = onlyEven([1,2,3,4,5]);
-		expect(result).to.deep.equal([2,4]);
-	});
+    var result = onlyEven([1,2,3,4,5]);
+    expect(result).to.deep.equal([2,4]);
+  });
 });
 
 // Above we needed to use _.partialRight to create our function based on
@@ -83,25 +83,25 @@ describe('mapWithSquare', function() {
 var plusIndex = null;
 describe('plusIndex', function() {
     it('should add index to number', function() {
-			var result = plusIndex([1,2,3]);
-			expect(result).to.deep.equal([1,3,5]);
-		});
+      var result = plusIndex([1,2,3]);
+      expect(result).to.deep.equal([1,3,5]);
+    });
 });
 
-// But damn, it would be nice to get away from that call to
-// _.partial! In order to get there, let's first do a small
-// generalization then we'll take a look at a another powerful
-// technique.
+// But damn, it would be nice to get away from these call to _.partial! In
+// order to get there, let's first do a small generalization then we'll take a
+// look at a another powerful technique.
 
-// So, first the generalization: Instead of flipping the arguments
-// ourselves we can create a flip method which flips the two
+// So, first the generalization: Instead of flipping the arguments ourselves as
+// we did in `mapWith` above we can create a flip method which flips the two
 // arguments on the passed function:
+
 function flip(fn) {
   return function(first, second) {
     return fn.call(this, second, first);
   };
 };
-// We can use this function to create mapWith:
+// We can use this function to create a new `mapWith`:
 
 var flippedMapWith = flip(_.map);
 
@@ -114,9 +114,9 @@ var flippedMapWithSquare = _.partial(flippedMapWith, function(val) {
 
 describe('flippedMapWithSquare', function() {
   it('should square numbers', function() {
-		var result = flippedMapWithSquare([1,2,3]);
-		expect(result).to.deep.equal([1,4,9]);
-	});
+    var result = flippedMapWithSquare([1,2,3]);
+    expect(result).to.deep.equal([1,4,9]);
+  });
 });
 
 // PROBLEM: Use flip to create a parseInt that applies in the other

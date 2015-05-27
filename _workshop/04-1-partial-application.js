@@ -23,9 +23,9 @@ describe('partiall application with bind', function() {
   var fourPlusOne = addOne.bind(4)
 
   it('on functions with no arguments', function() {
-		var result = fourPlusOne();
-		expect(result).to.equal(5);
-	});
+    var result = fourPlusOne();
+    expect(result).to.equal(5);
+  });
 
   // However, `bind` can do more powerful stuff than this: we can
   // actually partially apply some arguments. It's easier to
@@ -41,23 +41,23 @@ describe('partiall application with bind', function() {
 
   var addTwo = plus.bind(null, 2);
 
-  // This returns a new function where `a` is already set, and which
-  // we can then call with the last parameter, `b`:
+  // This returns a new function where `a` is already set to `2` and `this` is
+  // set to `null`. This new function we can then call with the last parameter, `b`:
 
   it('on function arguments', function() {
-		var result = addTwo(40);
-		expect(result).to.equal(42);
-	});
+    var result = addTwo(40);
+    expect(result).to.equal(42);
+  });
 
 });
 
-// This is a powerful technique. The only problem with `bind`, is
-// that we need to specify the context ourselves. However, as we
-// learned when we looked at decorators, this is something a
-// function can do for us (using `call` or `apply` internally).
-// Also, in some cases we might want to partially apply from the
-// right instead of from the left. It's time to get back to Lo-Dash
-// and the helpers offered there.
+// This is a powerful technique. The only problem with `bind`, is that we need
+// to specify the context ourselves (e.g. as `null` above when we created
+// `addTwo`). However, as we learned when we looked at decorators, this is
+// something a function can do for us (using `call` or `apply` internally).
+// Also, in some cases we might want to partially apply from the right instead
+// of from the left. It's time to get back to Lo-Dash and the helpers offered
+// there.
 
 // Let's start by going back to plus:
 
@@ -71,9 +71,9 @@ describe('partial application with _.partial', function() {
   // Using Lo-Dash's partial application helper, we could write:
 
   it('should work the same as bind', function() {
-		var result = addTwo(40);
-		expect(result).to.equal(42);
-	});
+    var result = addTwo(40);
+    expect(result).to.equal(42);
+  });
 
 });
 
@@ -85,10 +85,10 @@ var addThree = function() {
 
 describe('addThree', function() {
 
-    it('should have bound argument', function() {
-			var result = addThree(5);
-			expect(result).to.equal(8);
-		});
+  it('should have bound argument', function() {
+    var result = addThree(5);
+    expect(result).to.equal(8);
+  });
 
 });
 

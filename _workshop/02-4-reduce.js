@@ -88,16 +88,19 @@ describe('multiply', function() {
   });
 });
 
-// PROBLEM: Implement join using reduce
-// (think about what's the first value and what we need to
-// iterate over)
+// We don't always need to specify the initial value, i.e. `0` in `sum`
+// above. If we don't specify an initial value, the first item is used as
+// the initial value, and the first round with `reduce` is therefore with
+// the first and second item.
+
+// PROBLEM: Implement join using reduce without specifying an initial value
 
 function join(arr, chr) {
 }
 
 describe('join', function() {
 
-  it('does join the elements in the collection', function() {
+  it('works correctly with only one element', function() {
     var result = join(["a"], ":");
     expect(result).to.equal("a");
   });
@@ -117,12 +120,12 @@ function find(arr, el) {
 
 describe('find', function() {
 
-  it('should return true if element is found', function() {
+  it('should return true if element exists in the array', function() {
     var result = find([1,2,3], 1);
     expect(result).to.be.ok();
   });
 
-  it('should return false if element is not found', function() {
+  it('should return false if element does not exist in the array', function() {
     var result = find([1,2,3], 4);
     expect(result).to.not.be.ok();
   });

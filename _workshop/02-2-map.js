@@ -61,7 +61,7 @@ describe('map', function() {
 });
 
 // PROBLEM: Implement the following function using map, i.e. a
-// function that adds the current index to the current value.
+// function that adds the current index to the current value:
 //
 //  for (var i = 0; i < arr.length; i++) {
 //      arr[i] = arr[i] + i
