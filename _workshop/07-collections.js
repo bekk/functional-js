@@ -103,7 +103,6 @@ describe('_.chain', function() {
       .value();
 
   it('chain should work the same way as the original version', function() {
-		var result = ;
 		expect(fiveStarAuthors).to.deep.equal(fiveStarAuthors4);
 	});
 
@@ -244,7 +243,7 @@ describe('filter', function() {
     var result = filter([1,2,3,4,5], function(num) {
       return num % 2 == 0;
     });
-    
+
   	expect(result).to.deep.equal([2,4]);
   });
 });
