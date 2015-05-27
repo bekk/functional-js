@@ -59,7 +59,7 @@ describe('our filter with context', function() {
     maxAge: 120,
     validAges: function(ages) {
       return filter(ages, function(age) {
-        //return age < this.maxAge;
+        return age < this.maxAge;
       }, this);
     }
   };
