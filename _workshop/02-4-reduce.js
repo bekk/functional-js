@@ -17,56 +17,56 @@ info: |
 ---
 
 describe('reduce', function() {
-    // As always, let's start with an example of calculating the sum of
-    // all items in an array using a `for` loop:
+  // As always, let's start with an example of calculating the sum of
+  // all items in an array using a `for` loop:
 
-    function sumFor(arr) {
-      var sum = 0;
-      for (var i = 0; i < arr.length; i++) {
-        sum += arr[i];
-      }
-      return sum;
+  function sumFor(arr) {
+    var sum = 0;
+    for (var i = 0; i < arr.length; i++) {
+      sum += arr[i];
     }
+    return sum;
+  }
 
-    it('can be implemented with a for-loop', function() {
-      var result = sumFor([1,2,3]);
-      expect(result).to.equal(6);
-    });
+  it('can be implemented with a for-loop', function() {
+    var result = sumFor([1,2,3]);
+    expect(result).to.equal(6);
+  });
 
-    // Using reduce it can look like this:
+  // Using reduce it can look like this:
 
-    function sum(arr) {
-      return arr.reduce(function(acc, value){
+  function sum(arr) {
+    return arr.reduce(function(acc, value){
 
-        // What is returned in this function is used as `acc` for
-        // the next iteration
-        return acc + value;
+      // What is returned in this function is used as `acc` for
+      // the next iteration
+      return acc + value;
 
-      }, 0);
-      // 0 is the starting value for `acc`
+    }, 0);
+    // 0 is the starting value for `acc`
 
-      // What we return on the last iteration is the result of
-      // the reduce.
-    }
+    // What we return on the last iteration is the result of
+    // the reduce.
+  }
 
-    // This illustrates how reduce works:
+  // This illustrates how reduce works:
 
-    // Operation   Accumulator   List
-    //     +            0        1, 2, 3, 4
-    //                  1        2, 3, 4
-    //                  3        3, 4
-    //                  6        4
-    //                 10
+  // Operation   Accumulator   List
+  //     +            0        1, 2, 3, 4
+  //                  1        2, 3, 4
+  //                  3        3, 4
+  //                  6        4
+  //                 10
 
-    it('exists as a method on arrays in JavaScript', function() {
-      var result = sum([1,2,3,4]);
-      expect(result).to.equal(10);
-    });
+  it('exists as a method on arrays in JavaScript', function() {
+    var result = sum([1,2,3,4]);
+    expect(result).to.equal(10);
+  });
 
-    it('hands the values in the collection to the reducing-function', function() {
-      var result = sum([0,0,-1]);
-      expect(result).to.equal(-1);
-    });
+  it('hands the values in the collection to the reducing-function', function() {
+    var result = sum([0,0,-1]);
+    expect(result).to.equal(-1);
+  });
 
 });
 

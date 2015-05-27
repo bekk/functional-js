@@ -19,20 +19,20 @@ function once(fn) {
 }
 
 describe('once', function() {
-    var win = once(function(name) {
-        return name + ' is winning';
-    });
+  var win = once(function(name) {
+      return name + ' is winning';
+  });
 
-    it('should declare a winner the first time', function() {
-			var result = win('kim');
-			expect(result).to.equal('kim is winning');
-		});
+  it('should declare a winner the first time', function() {
+    var result = win('kim');
+    expect(result).to.equal('kim is winning');
+  });
 
-    it('should not change winner if invoked multiple times', function() {
-      var result = win('stian');
-			expect(result).to.equal('kim is winning');
-		});
+  it('should not change winner if invoked multiple times', function() {
+    var result = win('stian');
+    expect(result).to.equal('kim is winning');
+  });
 
-    // And we have now decorated a function, i.e. wrapped an existing functions
-    // with new functionality.
+  // And we have now decorated a function, i.e. wrapped an existing functions
+  // with new functionality.
 });

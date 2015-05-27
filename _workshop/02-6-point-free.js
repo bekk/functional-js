@@ -29,28 +29,32 @@ info: |
   (There are some things to think about. We will look at those later.)
 ---
 describe('point-free style', function() {
-    function exists(x) {
-      return x != null;
-    }
 
-    function truthy(x) {
-      return exists(x) && x !== false;
-    }
+  function exists(x) {
+    return x != null; // i.e. the x is neither `null` nor `undefined`
+  }
 
-    it('lets us pass functions as references if they have matching arguments', function() {
-      var result = values.filter(exists);
-      expect(result).to.deep.equal(['user', false, 0, 'test', 1]);
-    });
+  function truthy(x) {
+    return exists(x) && x !== false;
+  }
 
-    it('works with many different functions', function() {
-      var result = values.filter(truthy);
-      expect(result).to.deep.equal(['user', 0, 'test', 1]);
-    });
+  var values = ['user', null, false, 0, 'test', 1];
+
+  it('lets us pass functions as references if they have matching arguments', function() {
+    var result = values.filter(exists);
+    expect(result).to.deep.equal(['user', false, 0, 'test', 1]);
+  });
+
+  it('works with many different functions', function() {
+    var result = values.filter(truthy);
+    expect(result).to.deep.equal(['user', 0, 'test', 1]);
+  });
 
 });
 
 // PROBLEM: Sum the array using `_.reduce`, following a point-free style.
 // (You might need to create a helper function)
+
 describe('point-free _.reduce', function() {
   it('works as normal _.reduce', function() {
     var nums = [1,2,3,4,5];

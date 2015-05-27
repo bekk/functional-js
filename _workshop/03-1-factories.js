@@ -26,9 +26,9 @@ describe('makeAdder', function() {
     var addTwo = makeAdder(2)
 
     it('addTwo should add 2', function() {
-			var result = addTwo(40);
-			expect(result).to.equal(42);
-		});
+      var result = addTwo(40);
+      expect(result).to.equal(42);
+    });
 });
 
 // Seems simple enough, but it's a powerful technique that we will

@@ -27,6 +27,7 @@ describe('filter with context', function() {
 
         // here we specified that we want `this` inside the function in the
         // filter be the same as `this` is inside the current function
+
       }
     };
 
@@ -38,6 +39,7 @@ describe('filter with context', function() {
 });
 
 describe('our filter with context', function() {
+
   // PROBLEM: Fix our filter implementation below so it handles the
   // specified context
 

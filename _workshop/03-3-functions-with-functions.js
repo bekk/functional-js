@@ -27,45 +27,47 @@ info: |
 // supposed to work.)
 
 function guard(fn) {
-    var guard = function() {
-    };
+  var guard = function() {
+  };
 
-    // in JavaScript you can actually add
-    // functions to existing functions
+  // in JavaScript you can actually add
+  // functions to existing functions
 
-    guard.start = function() {
-    };
+  guard.start = function() {
+  };
 
-    return guard;
+  return guard;
 };
 
 describe('guard', function() {
-    // Let's now guard a debug helper. To make it a little bit simpler
-    // to test, we return a message instead of calling console.log or similar.
-    var callCount = 0;
-    var debug = guard(function(msg) {
-        callCount += 1;
-        return msg;
-    });
+  // Let's now guard a debug helper. To make it a little bit simpler
+  // to test, we return a message instead of calling console.log or similar.
 
-    it('should not return anything if not started', function() {
-        var result = debug('test 1');
-        expect(callCount).to.equal(0);
-        expect(result).to.equal(undefined);
-    });
+  var callCount = 0;
+  var debug = guard(function(msg) {
+    callCount += 1;
+    return msg;
+  });
 
-    it('should not return anything if not started even when invoked multiple times', function() {
-        var result = debug('test 2');
-        expect(callCount).to.equal(0);
-        expect(result).to.equal(undefined);
-    });
+  it('should not return anything if not started', function() {
+    var result = debug('test 1');
+    expect(callCount).to.equal(0);
+    expect(result).to.equal(undefined);
+  });
 
+  it('should not return anything if not started even when invoked multiple times', function() {
+    var result = debug('test 2');
+    expect(callCount).to.equal(0);
+    expect(result).to.equal(undefined);
+  });
+
+  it('should return if started', function() {
+    // open up the guard
     debug.start();
 
-    it('should return if started', function() {
-        var result = debug('test 3');
-        expect(callCount).to.equal(1);
-        expect(result).to.equal('test 3');
-    });
+    var result = debug('test 3');
+    expect(callCount).to.equal(1);
+    expect(result).to.equal('test 3');
+  });
 
 });
