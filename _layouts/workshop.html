@@ -49,10 +49,10 @@
 
       <div class="docs-prevnext">
         {% if page.prev %}
-          <a class="docs-prev" href="/{{ page.collection }}/{{ page.prev }}">&larr; Previous task</a>
+          <a class="docs-prev" href="{{site.baseurl}}/{{ page.collection }}/{{ page.prev }}">&larr; Previous task</a>
         {% endif %}
         {% if page.next %}
-          <a class="docs-next" href="/{{ page.collection }}/{{ page.next }}">Next task &rarr;</a>
+          <a class="docs-next" href="{{site.baseurl}}/{{ page.collection }}/{{ page.next }}">Next task &rarr;</a>
         {% endif %}
       </div>
 
