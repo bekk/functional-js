@@ -80,7 +80,7 @@ describe('addIndex', function() {
     var numbers = [1,2,3];
     var result = addIndex(numbers);
 
-    expect(result).to.deep.equal([1,2,5]);
+    expect(result).to.deep.equal([1,3,5]);
     expect(numbers).to.not.equal(result);
   });
 });

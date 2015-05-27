@@ -122,16 +122,16 @@ describe('find', function() {
 
   it('should return true if element exists in the array', function() {
     var result = find([1,2,3], 1);
-    expect(result).to.be.ok();
+    expect(result).to.be.ok;
   });
 
   it('should return false if element does not exist in the array', function() {
     var result = find([1,2,3], 4);
-    expect(result).to.not.be.ok();
+    expect(result).to.not.be.ok;
   });
 
   it('should return false if given an empty collection', function() {
     var result = find([], 1);
-    expect(result).to.not.be.ok();
+    expect(result).to.not.be.ok;
   });
 });
