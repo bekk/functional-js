@@ -7,7 +7,7 @@ prev: 04-1-partial-application
 name: 04-2-functions-from-functions
 next: 05-1-currying
 slides:
-info: |
+info:
 ---
 // Okey, let's keep playing with partial application. The thing about map,
 // filter and reduce is that we often have a "static" function as the last
