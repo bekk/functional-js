@@ -1,14 +1,16 @@
 ---
 layout: workshop
 collection: workshop
-title: Sealed structures
+title: Shared state
 section: 6
 prev: 05-4-parse-url
-name: 06-1-sealed
-next: 06-2-immutable
+name: 06-shared-state
+next: 07-collections
 slides:
 info: |
-
+  Sometimes we are working with shared state. Shared state is the source of many
+  bugs and odd behavior in code. We will be looking at some ways this manifests
+  and a few ways to guard against it.
 ---
 // Let's say that we have the following cache
 // implementation:
