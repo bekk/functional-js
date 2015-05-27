@@ -49,20 +49,20 @@ var naiveCache = (function() {
 describe('naiveCache', function() {
 
   it('can get values', function() {
-    cache.set('test', 1);
+    naiveCache.set('test', 1);
 
-    var result = cache.get('test');
+    var result = naiveCache.get('test');
     expect(result).to.equal(1);
   });
 
   it('does not shield values from mutation', function() {
     var obj = { name: 'kim' };
-    cache.set('user', obj);
+    naiveCache.set('user', obj);
 
     obj.wat = 'crazy';
 
     //When we get the value again
-    var user = cache.get('user');
+    var user = naiveCache.get('user');
 
     // user.wat is now "crazy"
     // -- that's just crazy!
@@ -79,7 +79,7 @@ describe('naiveCache', function() {
     // Now the initial `obj` contains `someValue` too.
     // The same applies for new cache gets:
 
-    var user2 = cache.get('user');
+    var user2 = naiveCache.get('user');
     // user.someValue is "what?"
   });
 });
