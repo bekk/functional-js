@@ -111,19 +111,10 @@ describe('parseDigit', function() {
 
   // But no, this is not as we expected:
 
-  it('should not work with map - first element', function() {
-    var result = parsed[0];
-    expect(result).to.equal(1);
-  });
-
-  it('should not work with map - second element', function() {
-    var result = isNaN(parsed[1]);
-    expect(result).to.ok;
-  });
-
-  it('should not work with map - third element', function() {
-    var result = isNaN(parsed[2]);
-    expect(result).to.ok;
+  it('should not work with map', function() {
+    expect(parsed[0]).to.equal(1);
+    expect(isNaN(parsed[1])).to.be.true;
+    expect(isNaN(parsed[2])).to.be.true;
   });
 });
 
