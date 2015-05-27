@@ -10,28 +10,6 @@ slides:
 info: |
 
 ---
-
-// // Okey, back again. First we'll include some of our helpers that we'll
-// // use later
-//
-// function flip(fn) {
-//   return function(first, second) {
-//     return fn.call(this, second, first);
-//   };
-// };
-//
-// var reduceWith = _.curry(flip(_.reduce));
-// var filterWith = _.curry(flip(_.filter));
-//
-// var plus = function(a,b) {
-//   return a + b;
-// }
-//
-// var sum = reduceWith(plus);
-
-// We're changing course for some tests, taking a good look at the
-// problems of mutability.
-
 // Let's say that we have the following cache
 // implementation:
 var naiveCache = (function() {
