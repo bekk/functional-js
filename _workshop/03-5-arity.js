@@ -30,24 +30,15 @@ describe('arity of parseInt', function() {
   // However, trying to use this function together with map,
   // we see a problem:
 
-  var parsed = ['1','2','3'].map(parseInt)
+  it('is funky when mapping over the function', function() {
+    var parsed = ['1','2','3'].map(parseInt)
 
-  it('with map first element', function() {
-    var result = parsed[0];
-    expect(result).to.equal(1);
+    expect(parsed[0]).to.equal(1);
+    expect(isNaN(parsed[1])).to.be.true;
+    expect(isNaN(parsed[2])).to.be.true;
   });
 
-  it('with map first element', function() {
-    var result = isNaN(parsed[1]);
-    expect(result).to.be.ok;
-  });
-
-  it('with map first element', function() {
-    var result = isNaN(parsed[2]);
-    expect(result).to.be.ok;
-  });
-
-    // (we can't use deepEqual since NaN !== NaN in JavaScript)
+  // (we can't use `to.deep.equal` since NaN !== NaN in JavaScript)
 });
 
 describe('fixed parseInt', function() {
