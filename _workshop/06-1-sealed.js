@@ -11,237 +11,224 @@ info: |
 
 ---
 
-// Okey, back again. First we'll include some of our helpers that we'll
-// use later
-
-function flip(fn) {
-    return function(first, second) {
-        return fn.call(this, second, first);
-    };
-};
-
-var reduceWith = _.curry(flip(_.reduce));
-var filterWith = _.curry(flip(_.filter));
-
-var plus = function(a,b) {
-    return a + b;
-}
-
-var sum = reduceWith(plus);
+// // Okey, back again. First we'll include some of our helpers that we'll
+// // use later
+//
+// function flip(fn) {
+//   return function(first, second) {
+//     return fn.call(this, second, first);
+//   };
+// };
+//
+// var reduceWith = _.curry(flip(_.reduce));
+// var filterWith = _.curry(flip(_.filter));
+//
+// var plus = function(a,b) {
+//   return a + b;
+// }
+//
+// var sum = reduceWith(plus);
 
 // We're changing course for some tests, taking a good look at the
 // problems of mutability.
 
-describe('cloning away the mutability', function() {
-    // Let's say that we have the following cache
-    // implementation:
-    var cache = (function() {
-        var values = {};
-        return {
-            get: function(key) {
-                return values[key];
-            },
-            set: function(key, value) {
-                values[key] = value;
-            }
-        };
-    })();
+// Let's say that we have the following cache
+// implementation:
+var naiveCache = (function() {
+  var values = {};
+  return {
+    get: function(key) {
+      return values[key];
+    },
+    set: function(key, value) {
+      values[key] = value;
+    }
+  };
+})();
 
-    // Now we can set and get from the cache:
+describe('naiveCache', function() {
 
-    cache.set("test", 1);
+  it('can get values', function() {
+    cache.set('test', 1);
 
-    it('a test', function() {
-			var result = cache.get("test");
-			expect(result).to.equal(1);
-		});
+    var result = cache.get('test');
+    expect(result).to.equal(1);
+  });
 
-    // However, there are some problems:
+  it('does not shield values from mutation', function() {
+    var obj = { name: 'kim' };
+    cache.set('user', obj);
 
-    var obj = { name: "kim" };
-    cache.set("user", obj);
+    obj.wat = 'crazy';
 
-    // oh noes, somewhere in the code someone goes crazy:
-    obj.wat = "crazy";
+    //When we get the value again
+    var user = cache.get('user');
 
-    // ... and then somewhere else:
-    var user = cache.get("user")
     // user.wat is now "crazy"
     // -- that's just crazy!
+    expect(user.wat).to.equal('crazy');
 
-    // Also, another problem:
-    user.someValue = "what?"
+    //This also works the other way
+    user.someValue = 'what?';
+
+    expect(obj.someValue).to.equal('what?');
+  });
+
+  it('does not prevent other from tampering with values', function() {
 
     // Now the initial `obj` contains `someValue` too.
     // The same applies for new cache gets:
 
-    var user2 = cache.get("user");
+    var user2 = cache.get('user');
     // user.someValue is "what?"
+  });
+});
 
-    // This is one example of mutability potentially
-    // creating subtle bugs that are difficult to debug
+// This is one example of mutability potentially
+// creating subtle bugs that are difficult to debug
 
-    // There are several ways to solve this problem. The first we'll look at is
-    // handling this by cloning the data we're working with. Lo-Dash contains
-    // two clone helpers: _.clone and _.cloneDeep. Let's first look at the
-    // difference between these.
+// There are several ways to solve this problem. The first we'll look at is
+// handling this by cloning the data we're working with. Lo-Dash contains
+// two clone helpers: _.clone and _.cloneDeep. Let's first look at the
+// difference between these.
 
-    // `_.clone` creates a creates a clone of value. That means that:
+// `_.clone` creates a creates a clone of value. That means that:
 
+describe('_.clone', function() {
+  it('does not refer to the same value', function() {
     var val = {};
+		var result = val !== _.clone(val);
+		expect(result).to.ok;
+	});
 
-    it('a test', function() {
-			var result = val !== _.clone(val);
-			expect(result).to.ok;
-		});
-
-    // I.e. we get a new reference. There is one problem however:
-
+  it('does not shield from mutating shared references', function() {
     var location = {
-        county: {
-            name: 'Nordland'
-        }
-    }
+      county: {
+        name: 'Nordland'
+      }
+    };
 
     var otherLocation = _.clone(location);
     otherLocation.county.name = 'Oslo';
 
-    // This is good:
-    it('a test', function() {
-			var result = location !== otherLocation;
-			expect(result).to.ok;
-		});
+    //They are not the same object
+		expect(location !== otherLocation).to.ok;
 
-    // This, however, is NOT good:
-    it('a test', function() {
-			var result = location.county.name;
-			expect(result).to.equal('Oslo');
-		});
+    //But they do share a common reference to the same county-object
+		expect(location.county.name).to.equal('Oslo');
 
     // Oups. There is a new reference on the base object, but the content is
     // not cloned and therefore still have the reference as before. It can
     // therefore be changed across objects.
-
-    // The solution is `_.cloneDeep`, which recursively clones the object.
-
-    var newLocation = {
-        county: {
-            name: 'Nordland'
-        }
-    }
-
-    var thirdLocation = _.cloneDeep(newLocation);
-    thirdLocation.county.name = 'Oslo';
-
-    it('a test', function() {
-			var result = location !== otherLocation;
-			expect(result).to.ok;
-		});
-    it('a test', function() {
-			var result = newLocation.county.name;
-			expect(result).to.equal('Nordland');
-		});
-
-    // PROBLEM: Fix the `cache` code above, so the following tests run.
-
-    it('a test', function() {
-			var result = obj.name;
-			expect(result).to.equal('kim');
-		});
-    it('a test', function() {
-			var result = user.name;
-			expect(result).to.equal("kim");
-		});
-    it('a test', function() {
-			var result = user2.name;
-			expect(result).to.equal("kim");
-		});
-
-    it('a test', function() {
-			var result = obj.wat;
-			expect(result).to.equal("crazy");
-		});
-    it('a test', function() {
-			var result = user.wat;
-			expect(result).to.equal(undefined);
-		});
-    it('a test', function() {
-			var result = user2.wat;
-			expect(result).to.equal(undefined);
-		});
-
-    it('a test', function() {
-			var result = obj.someValue;
-			expect(result).to.equal(undefined);
-		});
-    it('a test', function() {
-			var result = user.someValue;
-			expect(result).to.equal("what?");
-		});
-    it('a test', function() {
-			var result = user2.someValue;
-			expect(result).to.equal(undefined);
-		});
-
+  });
 });
 
-describe("prevent cache changes", function() {
-    // should we at all be able to change the object we received
-    // from the cache?
+// The solution is `_.cloneDeep`, which recursively clones the object.
+describe('_.cloneDeep', function() {
+  var location = {
+    county: {
+      name: 'Nordland'
+    }
+  };
+  var otherLocation = _.cloneDeep(location);
+  otherLocation.county.name = 'Oslo';
 
-    // There are several ways of protecting an object from being
-    // written to in JavaScript:
-    //
-    // 1. Preventing extensions is the weakest level,
-    // 2. sealing is stronger,
-    // 3. freezing is strongest.
+  it('should not share reference', function() {
+    expect(location !== otherLocation).to.ok;
+  });
 
-    // Today we will go straigth for the freezing
+  it('should not share reference to shared objects', function() {
+    expect(otherLocation.county.name).to.equal('Oslo');
+    expect(location.county.name).to.equal('Nordland');
+  });
+});
 
-    // PROBLEM: You task is to use Object.freeze
-    // (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze)
-    // to disable writing to objects returned from the cache.
+// PROBLEM: Fix the `cache` code above, so the following tests run.
+var cache = (function() {
+  var values = {};
+  return {
+    get: function(key) {
+      return values[key];
+    },
+    set: function(key, value) {
+      values[key] = value;
+    }
+  };
+})();
 
-    // Let's start of where we ended in the last test:
-    var cache = (function() {
-        var values = {};
-        return {
-            get: function(key) {
-                return _.cloneDeep(values[key]);
-            },
-            set: function(key, value) {
-                values[key] = _.cloneDeep(value);
-            }
-        };
-    })();
+describe('cache', function() {
+  var obj = {name: 'kim'};
 
-    it('a test', function() {
-      function result() {
-        cache.test = "wat?";
-      }
+  cache.set('user', obj);
 
-      expect(result()).to.throw(TypeError);
-    });
+  it('should preserve name of original object', function() {
+		var result = cache.get('user').name;
+		expect(result).to.equal('kim');
+	});
 
-    var obj = { name: "kim" };
-    cache.set("user", obj);
+  it('should not allow mutating stored obj', function() {
+    var user = cache.get('user');
+    user.name = 'stian';
+		expect(obj.name).to.equal('kim');
+		expect(user.name).to.equal('stian');
+	});
 
-    var user = cache.get("user");
+  it('should not allow adding new props to stored obj', function() {
+    var user = cache.get('user');
+    user.wat = 'crazy';
+		expect(obj.wat).to.equal(undefined);
+		expect(user.wat).to.equal('crazy');
+	});
+});
 
-    it('a test', function() {
-      function result() {
-        user.name = "kjetil";
-      }
+// should we at all be able to change the object we received
+// from the cache? Maybe not. Being able to will lead to
+// subtle and hard to find bugs.
 
-      expect(result()).to.throw(TypeError);
-    });
+// There are several ways of protecting an object from being
+// written to in JavaScript:
+//
+// 1. Preventing extensions is the weakest level,
+// 2. sealing is stronger,
+// 3. freezing is strongest.
 
-    it('a test', function() {
-      function result() {
-        user.someValue = "test";
-      }
+// Today we will go straigth for the freezing
 
-      expect(result()).to.throw(TypeError);
-    });
+// PROBLEM: You task is to use Object.freeze
+// (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze)
+// to disable writing to objects returned from the cache.
 
+var frozenCache = (function() {
+  var values = {};
+  return {
+    get: function(key) {
+      return _.cloneDeep(values[key]);
+    },
+    set: function(key, value) {
+      values[key] = _.cloneDeep(value);
+    }
+  };
+})();
+
+describe('frozenCache', function() {
+  var obj = {name: 'kim'};
+  frozenCache.set('user', obj);
+
+  it('will not allow extension of objects recieved from the cache', function() {
+    function result() {
+      var user = frozenCache.get('user');
+      user.test = 'wat?';
+    }
+
+    expect(result).to.throw(TypeError);
+  });
+
+  it('will not allow mutation of objects recieved from the cache', function() {
+    function result() {
+      var user = frozenCache.get('user');
+      user.name = 'kjetil';
+    }
+
+    expect(result).to.throw(TypeError);
+  });
 });

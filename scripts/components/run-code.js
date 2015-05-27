@@ -44,7 +44,8 @@ export default component(
       <h3>Test results:</h3>
       <div className='results'></div>
       <h3>Output:</h3>
-      <div className='react-result'></div>
+      <div className='react-result'>
+      </div>
     </div>
   });
 
@@ -102,7 +103,12 @@ const runCode = function () {
     const compiledCode = to5.transform(srcWithoutComments).code;
 
     const log = function log() {
-      resultEl.innerHTML = _(arguments).join(' ');
+      var container = document.createElement('div');
+      container.innerHTML = _(arguments).join(' ');
+
+      var existing = resultEl.innerHTML;
+
+      resultEl.innerHTML = existing + container.outerHTML;
       console.log(...arguments);
     }
 
