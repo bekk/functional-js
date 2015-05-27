@@ -71,7 +71,9 @@ describe('maybe', function() {
   };
 
   it('to throw', function() {
-    expect(user.setName('kim')).to.throw(TypeError);
+    expect(function() {
+      user.setName('kim');
+    }).to.throw(TypeError);
   });
 
   // It throws this error at us:
