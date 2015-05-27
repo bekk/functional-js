@@ -38,7 +38,7 @@ var flipN = function(fn) {
 var pipeline = flipN(_.compose);
 
 var splitOn = _.curry(function(chr, str) {
-  return String.prototype.split.call(str, chr);
+  return str.split(chr);
 });
 
 var joinOn = _.curry(function(chr, arr) {

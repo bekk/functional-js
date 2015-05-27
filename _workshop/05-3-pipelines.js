@@ -51,7 +51,7 @@ describe('pipelined after', function() {
 // previous task. First we'll bring in the helpers:
 
 var splitOn = _.curry(function(chr, str) {
-  return String.prototype.split.call(str, chr);
+  return str.split(chr);
 });
 
 var joinOn = _.curry(function(chr, arr) {

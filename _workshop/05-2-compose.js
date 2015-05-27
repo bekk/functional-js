@@ -81,7 +81,7 @@ describe('composed find', function() {
 
 // Remember our curried splitOn?
 function splitOn(chr, str) {
-  return String.prototype.split.call(str, chr);
+  return str.split(chr);
 }
 var curriedSplitOn = _.curry(splitOn);
 
