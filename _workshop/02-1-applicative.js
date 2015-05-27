@@ -40,7 +40,7 @@ describe('applicative programming', function() {
   });
 
   it('is about reusing already defined functions by passing them as parameters', function() {
-    var result [1,2,3].map(square);
+    var result = [1,2,3].map(square);
 
     expect(result).to.deep.equal([1,4,9]);
   });
