@@ -11,8 +11,6 @@ info: |
   Prototypes are another core concept in JavaScript. Functions and prototypes
   interact in many interesting ways.
 
-  TODO: Skriv mer her.
-
   There will not be much about prototypes in this workshop, but
   there is one thing it is important to understand, especially when
   working with `arguments`: In JavaScript you can borrow existing
