@@ -56,12 +56,12 @@ function multiplyFirst() {
 describe('multiplyFirst', function() {
 
   it('1*1=1', function() {
-    var result = multiplyFirst(1,1);
+    var result = multiplyFirst.call(1,1);
     expect(result).to.equal(1);
   });
 
   it('2*5=10', function() {
-    var result = multiplyFirst(2,5);
+    var result = multiplyFirst.call(2,5);
     expect(result).to.equal(10);
   });
 });
