@@ -33,7 +33,10 @@ describe('arity of parseInt', function() {
   it('is funky when mapping over the function', function() {
     var parsed = ['1','2','3'].map(parseInt)
 
+    // The first is 1, as expected
     expect(parsed[0]).to.equal(1);
+
+    // ... but the two others are not even numbers:
     expect(isNaN(parsed[1])).to.be.true;
     expect(isNaN(parsed[2])).to.be.true;
   });
