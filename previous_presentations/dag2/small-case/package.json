@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "baconjs": "^0.7.22",
+    "beefy": "^2.1.1",
+    "ecstatic": "^0.5.4",
+    "jquery": "^2.1.1",
+    "lodash": "^2.4.1",
+    "q": "^1.0.1"
+  },
+  "scripts": {
+    "start": "beefy app.js --index=index.html --open --live"
+  }
+}

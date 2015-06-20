@@ -1,0 +1,38 @@
+{
+  "name": "bacon-chat",
+  "version": "2.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "baconjs": "^0.7.22",
+    "ecstatic": "^0.5.4",
+    "humanize": "0.0.9",
+    "jquery": "^2.1.1",
+    "lodash-node": "^2.4.1",
+    "socket.io": "^1.0.6",
+    "socket.io-client": "^1.0.6"
+  },
+  "browserify": {
+    "transform": [
+      "es6-arrow-function"
+    ]
+  },
+  "devDependencies": {
+    "browserify": "^5.10.1",
+    "es6-arrow-function": "^0.3.1",
+    "gulp": "^3.8.7",
+    "gulp-autoprefixer": "0.0.9",
+    "gulp-less": "^1.3.5",
+    "gulp-notify": "^1.5.0",
+    "vinyl-source-stream": "^0.1.1",
+    "watchify": "^1.0.2"
+  },
+  "scripts": {
+    "build": "gulp",
+    "watch": "gulp watch",
+    "serve": "node static-server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

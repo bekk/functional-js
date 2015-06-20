@@ -1,0 +1,43 @@
+@import "reset.less";
+@import "colors.less";
+@import "mixins.less";
+
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: @background;
+  font-family: Helvetica, Arial;
+}
+
+
+a:link, a:visited {
+  color: @red;
+}
+
+a:hover, a:active {
+  color: @linkColorHover;
+}
+
+.helper-box {
+  height: 1px;
+  width: 1px;
+  display: block;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+
+  video {
+    height: @inputSize;
+  }
+}
+
+@import "chat.less";

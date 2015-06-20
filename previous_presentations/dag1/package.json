@@ -1,0 +1,20 @@
+{
+  "scripts": {
+    "1": "tape 1_intro.js | tap-bail | tap-spec",
+    "2": "tape 2_applicative.js | tap-bail | tap-spec",
+    "3": "tape 3_functions.js | tap-bail | tap-spec",
+    "4": "tape 4_partially.js | tap-bail | tap-spec",
+    "5": "tape 5_curry_compose.js | tap-bail | tap-spec",
+    "6": "tape 6_immutability.js | tap-bail | tap-spec",
+    "7": "tape 7_collections.js | tap-bail | tap-spec",
+    "test": "tape 1_intro.js 2_applicative.js 3_functions.js 4_partially.js 5_curry_compose.js 6_immutability.js 7_collections.js | tap-bail | tap-spec",
+    "solutions": "tape solutions/1_intro.js solutions/2_applicative.js solutions/3_functions.js solutions/4_partially.js solutions/5_curry_compose.js solutions/6_immutability.js solutions/7_collections.js | tap-bail | tap-spec"
+  },
+  "dependencies": {
+    "immutable": "^2.0.16",
+    "lodash": "^2.4.1",
+    "tap-bail": "0.0.0",
+    "tap-spec": "^0.2.1",
+    "tape": "^2.14.0"
+  }
+}

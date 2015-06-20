@@ -1,0 +1,56 @@
+/* Data flow example */
+.slides .dataflow-example {
+  background: url("../img/data_flow.svg") left top no-repeat;
+  position: relative;
+  width: 900px;
+  height: 364px;
+  margin: 0 auto;
+}
+
+.node,
+.node-result {
+  border: 0;
+  background: none;
+  color: #fff;
+  position: absolute;
+  font-size: 2em;
+  width: 100px;
+  outline: 0;
+  text-align: center;
+}
+
+.node-a {
+  top: 50px;
+  left: 25px;
+}
+
+.node-b {
+  bottom: 36px;
+  left: 25px;
+}
+
+.node-d {
+  top: 30px;
+  left: 385px;
+}
+
+.node-c {
+  bottom: 96px;
+  left: 385px;
+}
+
+.node-result {
+  top: calc(50% - 40px);
+  right: 15px;
+}
+
+.reveal h2.black {
+  color: #1b1b1b;
+}
+
+.reveal code {
+  display: inline-block;
+  background: #666;
+  padding: 5px 10px;
+  border-radius: 2px;
+}

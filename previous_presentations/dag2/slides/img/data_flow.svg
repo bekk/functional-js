@@ -1,0 +1,70 @@
+<svg width="900" height="364" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:se="http://svg-edit.googlecode.com">
+ <style>.node {
+      stroke: red;
+      fill: none;
+      stroke: #fff;
+      stroke-width: 5;
+    }
+
+    .add {
+      stroke: #fff;
+      stroke-width: 5;
+      fill: none;
+    }
+
+    .text {
+      font-weight: bold;
+      fill: #fff;
+      stroke-width: 0;
+    }
+
+    .arrow {
+      fill: #fff;
+      stroke-width: 0;
+    }
+
+    .line {
+      stroke: #fff;
+      stroke-width: 5;
+    }</style>
+ <g>
+  <title>Dataflow Add</title>
+
+  <ellipse cx="429.80072" cy="232.51506" rx="62.80072" ry="65.48495" id="svg_4" class="node"/>
+  <ellipse cx="429.80072" cy="70.48495" id="svg_1" rx="62.80072" ry="65.48495" class="node"/>
+  <ellipse stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" cx="831.91562" cy="183.59532" id="svg_11" rx="65.08438" ry="67.86622" class="node"/>
+  <polyline se:connector="svg_5 svg_11" id="svg_13" points="694.4730224609375,184.2626953125 730.6521606445312,184.08702087402344 766.831298828125,183.91134643554688" class="line"/>
+  <path stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" d="m614.58069,146.78471l39.94598,0l0,0c22.06171,0 39.94635,16.86655 39.94635,37.67204c0,20.8064 -17.88464,37.67184 -39.94635,37.67184l-39.94598,0l0,-75.34389z" id="svg_5" class="add"/>
+  <line stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="494.31418" y1="231.32442" x2="539.61858" y2="231.32442" id="svg_14" class="line"/>
+  <line stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="612.45781" y1="203.83613" x2="542.65437" y2="203.83613" id="svg_15" class="line"/>
+  <line stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="541.37882" y1="205.85954" x2="541.37882" y2="231.30101" id="svg_16" class="line"/>
+  <line stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="541.66428" y1="164.54515" x2="614.98123" y2="164.54515" id="svg_17" class="line"/>
+  <line stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="540.52424" y1="74.05686" x2="495.01882" y2="74.05686" id="svg_18" class="line"/>
+  <line stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="540.52244" y1="71.08027" x2="540.52244" y2="167.52175" id="svg_19" class="line"/>
+
+  <path stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" d="m607.08368,203.83612l-12.39191,-12.935l8.16113,0l12.39185,12.935l-12.39185,12.935l-8.16113,0l12.39191,-12.935z" id="svg_27" class="arrow"/>
+  <path stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" d="m607.08368,163.76398l-12.39185,-12.935l8.16107,0l12.39185,12.935l-12.39185,12.935l-8.16107,0l12.39185,-12.935z" id="svg_26" class="arrow"/>
+  <path stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" d="m758.38647,183.59534l-12.39185,-12.935l8.16113,0l12.39185,12.935l-12.39185,12.93497l-8.16113,0l12.39185,-12.93497z" id="svg_28" class="arrow"/>
+  <text stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="650" y="190" id="svg_30" font-size="24" font-family="Monospace" text-anchor="middle" xml:space="preserve" class="text">ADD</text>
+  <ellipse id="svg_2" cx="65.56421" cy="294.51507" rx="62.80072" ry="65.48495" class="node"/>
+  <ellipse id="svg_3" cx="65.56421" cy="90.48496" rx="62.80072" ry="65.48495" class="node"/>
+
+  <path id="svg_6" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" d="m213.34418,197.06203l40.446,0l0,0c22.33784,0 40.44633,17.07765 40.44633,38.14357c0,21.06683 -18.10849,38.14337 -40.44633,38.14337l-40.446,0l0,-76.28694z" class="add"/>
+
+
+  <line id="svg_7" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="130.07767" y1="293.32443" x2="175.38207" y2="293.32443" class="line"/>
+  <line id="svg_8" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="208.2213" y1="253.83614" x2="176.41786" y2="253.83614" class="line"/>
+  <line id="svg_9" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="177.14231" y1="252.85955" x2="177.14231" y2="296.30102" class="line"/>
+  <line id="svg_10" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="176.42777" y1="214.54516" x2="210.74472" y2="214.54516" class="line"/>
+  <line id="svg_12" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="176.28773" y1="94.05687" x2="130.78231" y2="94.05687" class="line"/>
+  <line id="svg_20" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="176.28593" y1="95.08028" x2="176.28593" y2="215.52176" class="line"/>
+
+  <path id="svg_21" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" d="m202.84717,253.83612l-12.39191,-12.935l8.16113,0l12.39185,12.935l-12.39185,12.935l-8.16113,0l12.39191,-12.935z" class="arrow"/>
+  <path id="svg_22" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" d="m202.84717,213.76398l-12.39185,-12.935l8.16107,0l12.39185,12.935l-12.39185,12.935l-8.16107,0l12.39185,-12.935z" class="arrow"/>
+  <text style="cursor: move;" id="svg_23" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="252.76349" y="243.00001" font-size="24" font-family="Monospace" text-anchor="middle" xml:space="preserve" class="text">SUB</text>
+
+  <path id="svg_25" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" d="m356.86267,237.0802l-12.39185,-12.93501l8.16113,0l12.39185,12.93501l-12.39185,12.93497l-8.16113,0l12.39185,-12.93497z" class="arrow"/>
+
+  <line id="svg_31" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="360.25269" y1="236.5" x2="295.74728" y2="236.5" class="line"/>
+ </g>
+</svg>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FRP CRUD Case</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Welcome to my awesome record collection</h1>
+  <p>A sample application for keeping track of records.</p>
+  <section class="main">
+    <div class="add">
+      <h2>Add Record</h2>
+      <form id="add-record">
+        <div style="display: none;" class="error">Could not add record.</div>
+        <fieldset>
+          <div>
+            <label for="album">Album</label>
+            <input id="album" type="text" placeholder="Album">
+            <i></i>
+          </div>
+
+          <div>
+            <label for="artist">Artist</label>
+            <input id="artist" type="text" placeholder="Artist">
+            <i></i>
+          </div>
+
+          <div>
+            <label for="year">Year</label>
+            <input id="year" type="text" placeholder="Year">
+            <i></i>
+          </div>
+
+          <div>
+            <label for="genre">Genre</label>
+            <input id="genre" type="text" placeholder="Genre">
+            <i></i>
+          </div>
+
+          <div>
+            <button disabled="disabled" type="submit">Add<div style="display: none;" class="loader-small" /></button>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <div class="list">
+      <h2>Registered Records</h2>
+      <div>
+        <input type="text" id="filter" placeholder="Filter...">
+      </div>
+      <div id="records">
+        <div style="display: none;" class="error">Failed to get records from server</div>
+        <div class="loader"></div>
+        <ul></ul>
+      </div>
+    </div>
+  </section>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>BaconChat</title>
+
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+
+ <section class="module">
+  <header class="top-bar">
+    <h1><img src="assets/bacon.png" alt="Bacon logo" /> BaconChat</h1>
+  </header>
+
+  <div class="users-wrap">
+    <ol class="users">
+    </ol>
+  </div>
+
+  <div class="discussion-wrap">
+    <ol class="discussion"></ol>
+  </div>
+  <footer class="message-box">
+    <img id="mini-avatar" class="avatar" alt="avatar" />
+    <form>
+      <input type="text" autofocus autocomplete="off" id="input-message" class="input-message" placeholder="Write a message" />
+    </form>
+  </footer>
+</section>
+
+<script type="xhtml/template" id="messageTemplate">
+<li>
+  <div class="messages">
+    <div class="picture">
+      <img src="<%- picture %>" alt="<%- username %>" />
+    </div>
+    <time datetime="<%= time %>"><%- username %> • <%= time %></time>
+    <p><%- message %></p>
+  </div>
+</li>
+</script>
+<script type="xhtml/template" id="partingTemplate">
+<li>
+  <div class="messages parting">
+    <p><strong>Quit: </strong> <span><%= username %></span> quit the chat.</p>
+  </div>
+</li>
+</script>
+<script type="xhtml/template" id="errorTemplate">
+<li>
+  <div class="messages parting">
+    <p><strong>Error: </strong> <%- message %></p>
+  </div>
+</li>
+</script>
+<script type="xhtml/template" id="usersTemplate">
+<li class="user" data-user="<%- username %>"><%- username %></li>
+</script>
+
+<div class="hidden helper-box">
+  <video autoplay></video>
+  <canvas id="screenshots"></canvas>
+</div>
+
+<script src="bundle.js"></script>
+<!-- <script src="build/_stepwise.js"></script> -->
+</body>
+
+</html>

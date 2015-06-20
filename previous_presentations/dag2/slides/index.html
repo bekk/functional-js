@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Functional Reactive Programming</title>
+
+  <link rel="stylesheet" href="./css/reveal.min.css">
+  <link rel="stylesheet" href="./css/theme/night.css">
+  <link rel="stylesheet" href="./css/presentation.css">
+</head>
+
+<body>
+
+  <div class="reveal">
+
+    <div class="slides">
+
+      <section>
+        <h1>Functional Reactive Programming</h1>
+        <p>Funksjonell JavaScript Helg, August 2014</p>
+        <p>Mikael Brevik / <a href="http://twitter.com/mikaelbrevik">@mikaelbrevik</a></p>
+        <p>Stian Veum Møllersen / <a href="http://twitter.com/mollerse">@mollerse</a></p>
+      </section>
+
+      <section>
+        <h2>Agenda for dagen</h2>
+        <ol>
+          <li>Motivasjon og teoretisk bakgrunn</li>
+          <li>Praktisere teori med oppgaver</li>
+          <li>En liten case</li>
+          <li>En større case</li>
+        </ol>
+      </section>
+
+      <section data-background="./img/batman.gif" >
+        <h2>Motivasjon for FRP</h2>
+      </section>
+
+      <section>
+        <h3>Brukergrensesnitts egenskaper</h3>
+      </section>
+
+      <section>
+        <h3>Shared mutable state</h3>
+        <aside class="notes">
+          <p>
+            Grensesnittet er en felles lekegrind for både systemet og brukeren hvor de står fritt til å forandre tilstanden til det når de føler for det. Som vi lærte i går så er det lett å gå i revefella med mutabel tilstand, spesielt når det sitter en bruker på andre siden.
+          </p>
+        </aside>
+      </section>
+
+      <section>
+        <h3>Asynchronous actions</h3>
+        <aside class="notes">
+          <p>
+            All interaksjon fra brukeren, interaksjon med baksystemer. GUI tråden og whateverelse. Eventloop etc. Asynkronitet og funksjonell programmering er fint mulig, men i kombinasjon med delt mutabel tilstand blir dette fort til et kaos.
+          </p>
+        </aside>
+      </section>
+
+      <section>
+        <h3>Temporal dependencies</h3>
+        <aside class="notes">
+          <p>
+            Når vi i tillegg legger til kravet om at handlinger har en streng avhengighet til tid, det vil si at rekkefølgen handlinger skjer har signifikans for utfallet av handlingene. Feks inputfelter hvor du må tracke tilstanden til alt som blir skrevet inn. Kombinerer vi dette med asynkronitet blir det vanskelig å unifisere det med en funksjonell tankegang.
+          </p>
+        </aside>
+      </section>
+
+      <section>
+        <h3>Hva skal til for å gjøre dette enklere med funksjonell programming?</h3>
+        <ul>
+          <li class="fragment">Abstrahere vekk tilstandsendringer</li>
+          <li class="fragment">Deklarative avhengigheter mellom tilstander</li>
+          <li class="fragment">Bevare tidsinformasjon på en god måte</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Reactive programming</h2>
+      </section>
+
+      <section>
+        <h3>A programming paradigm oriented around data flows and the propagation of change.</h3>
+      </section>
+
+      <section>
+        <h3>Data flow programming</h3>
+        <p>Express dependencies between values</p>
+        <aside class="notes">
+          <p>
+            Spreadsheetanalogien.
+          </p>
+        </aside>
+      </section>
+
+      <section data-state="reactive-example">
+        <div class="dataflow-example">
+          <input type="number" id="a" value="3" class="node node-a"/>
+          <input type="number" id="b" value="2" class="node node-b"/>
+          <input type="number" id="c" class="node node-c" disabled=""/>
+          <input type="number" id="d" value="2" class="node node-d"/>
+          <input type="text" id="sum" value="0" disabled="" class="node-result"/>
+        </div>
+      </section>
+
+      <section>
+        <h3>Verdier og formler</h3>
+        <p>Hvordan tenke i dataflyt</p>
+        <aside class="notes">
+          <p>
+            Et objekt kan være enten en verdi eller en formel. En formel kan kan ha avhengigheter til verdier eller andre formler.
+          </p>
+        </aside>
+      </section>
+
+      <section>
+        <h3>Abstraksjoner</h3>
+        <p>Reaktive datatyper</p>
+        <aside class="notes">
+          <p>
+            Lar oss opprette datatyper som delegerer propageringen av tilstand til sine konsumenter til den underliggende eksekveringsmodellen.
+          </p>
+        </aside>
+      </section>
+
+      <section>
+        <p>Hvordan løser dette problemene vi hadde med grensesnitt?</p>
+      </section>
+
+      <section>
+        <h3>Abstrahere vekk tilstand</h3>
+        <p>De reaktive datatypene tar seg av håndtering av tilstand og propagering av tilstandsendringer</p>
+      </section>
+
+      <section>
+        <h3>Deklarative avhengigheter mellom tilstander</h3>
+        <p>Vi kan uttrykke avhengigheter mellom reaktive datatyper som en ny reaktiv datatype</p>
+      </section>
+
+      <section>
+        <h3>Bevare tidsinformasjon på en god måte</h3>
+        <p>Ved å ta hensyn til både kontinuerlige og diskrete tidsfenomen</p>
+      </section>
+
+      <section>
+        <h3>Tidsavhengigheter</h3>
+        <p>Ta vare på tidspunktet til tilstandsendringer</p>
+      </section>
+
+      <section>
+        <h3>EventStreams og Behaviours</h3>
+        <p>Diskrete og kontinuerlige tidsfenomen</p>
+      </section>
+
+      <section>
+        <h3>Kontinuerlig vs diskret</h3>
+        <p><code>f(t) => v</code> vs <code>[(v, t)]</code></p>
+      </section>
+
+      <section>
+        <h3>Sammenligning: Observer pattern</h3>
+      </section>
+
+      <section>
+        <h3>Eksempel: To-veisbindinger</h3>
+      </section>
+
+      <section>
+        <h2>Functional &amp; Reactive</h2>
+      </section>
+
+      <section>
+        <h3>Hva oppnår vi?</h3>
+        <p>Functional reasoning til tross for kjipt miljø</p>
+      </section>
+
+      <section>
+        <h3>Combinators over reaktive datatyper</h3>
+        <p>Høyere ordens reaktive datatyper</p>
+        <aside class="notes">
+          <p>
+            Behandler reaktive data typer / eventer som lister uavhengig av tid.
+          </p>
+        </aside>
+      </section>
+
+      <section>
+        <h3>Vi håndeter fortsatt mutabel tilstand i ytterpunktene til grafen</h3>
+        <aside class="notes">
+          <p>Side-effects og tilsetting av verdier til f.eks UI blir gjort som avsluttende punkt i en pipeline.</p>
+        </aside>
+      </section>
+
+      <section>
+        <h3>Forskjellige utgaver av FRP</h3>
+        <p>FRP i lazy språk vs ikke-lazy språk</p>
+        <aside class="notes">
+          <p>
+            Nevne classic og de andre typene FRP. Relatere til problemer med minne i Haskells lazy evaluation.
+          </p>
+        </aside>
+      </section>
+
+      <section data-background="./img/kevin_bacon.gif">
+        <h3>Bacon.js</h3>
+        <aside class="notes">
+          <p>Si noe om hva Bacon.js er og hvorfor vi har valgt det</p>
+          <p>Bacon har klassisk FRP (properties/eventstreams). Veldig god dokumentasjon og har et stort featureset.</p>
+        </aside>
+      </section>
+
+      <section>
+        <h3>Bacon Love</h3>
+        <p><code>npm install -g bacon-love</code></p>
+      </section>
+
+    </div>
+
+  </div>
+
+  <script src="./lib/js/head.min.js"></script>
+  <script src="./js/reveal.min.js"></script>
+
+  <script>
+
+    Reveal.initialize({
+      controls: false,
+      progress: true,
+      history: true,
+      center: true,
+      transition: 'linear',
+      backgroundTransition: 'slide', // default/none/slide/concave/convex/zoom
+      dependencies: [
+        { src: 'lib/js/jquery.js', condition: function() { return !window.jQuery; }},
+        { src: 'lib/js/bacon.js', condition: function() { return !window.Bacon; }},
+        { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; }},
+        { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+      ]
+    });
+
+    Reveal.addEventListener('reactive-example', function () {
+      var _add = function (a, b) { return a + b; },
+          _sub = function (a, b) { return a - b; },
+          _value = function (e) { return e.currentTarget.value; },
+          getInputAsProperty = function (id) {
+            var $el = $(id);
+            return $el.asEventStream("change")
+                      .map(_value)
+                      .toProperty($el.val())
+                      .map(Number);
+          };
+
+      var $a = getInputAsProperty("#a"),
+          $b = getInputAsProperty("#b"),
+          $c = $a.combine($b, _sub),
+          $d = getInputAsProperty("#d");
+
+      $c.assign($("#c"), "val");
+      $c.combine($d, _add).assign($("#sum"), "val");
+    }, false);
+  </script>
+
+</body>
+</html>

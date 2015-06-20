@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Funksjonell JS ~ Dag 1</title>
+    <link rel="stylesheet" href="remark-styling.css"/>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle, inverse
+
+# **Funksjonell JS**
+
+### Dag 1
+
+---
+class: middle, inverse, center
+
+## Agenda
+
+WTF er funksjonell  
+programmering
+
+Praktisk om opplegget
+
+Work, work, work
+
+.gray[*Middag*]
+
+---
+class: center, middle, inverse
+
+### WTF er 
+# **funksjonell<br>programmering**
+### ?
+
+---
+class: middle
+
+## Monad
+
+> *noun .gray[\ˈmō-ˌnad\*]
+
+> A monad in X is a monoid in the category of endofunctors of X, with product × replaced by composition of endofunctors and unit set by the identity endofunctor.
+
+???
+
+Det er ingen vits i å gå rundt grøten, så vi går rett på. 
+Hvor mange her er det som er kjent med kategoriteori? 
+
+Så, hvis vi har en monade i X, så er det det samme som å ha en monoide i den samme X der...
+
+`</trolling>`
+
+---
+class: center, middle
+
+## funksjonelle språk
+
+vs
+
+## imperative språk
+
+
+???
+
+- Mange deler programmeringspråk inn i "funksjonelle språk" og "imperative" eller "ikke-funksonelle" språk.
+- Noen språk som typisk omtales som funksjonelle er Haskell, Lisp-er, F#, etc
+- Typisk imperative er C, Java, C#, Cobol, etc
+- Er JavaScript et funksjonelt språk?
+- I mine øyne er spørsmålet dårlig definert. "funksjonell programmering" er ikke et enten-eller konsept.
+
+---
+class: center, middle
+
+så, hva er 
+## funksjonell programmering?
+
+???
+
+- Funksjonell programmering mer en måte å tenke og jobbe på. 
+  - *Funksjonelle språk* er de som legger godt til rette for denne måten å jobbe. 
+  - *Imperative språk* er språk som gjør det vanskelig å jobbe slik.
+
+- Det er to konsepter jeg mener er viktige for funksjonell programmering:
+  - Å bruke funksjoner som den grunnleggende byggestenen i språket.
+  - Å minimere bruk av muterbar tilstand, eller å unngå det helt.
+
+  > Begge deler dreier seg om hvordan en tilnærmer seg problemer, og utformer løsninger til disse.
+
+
+---
+class: middle, larger-img
+
+### funksjonen som byggesten  
+
+&nbsp;
+
+.leftcol-medium[.no-bullets[
+
+- Høyere ordens funksjoner
+- .gray[Anonyme funksjoner]
+- .gray[Komponering av funksjoner]
+- .gray[Partial application]
+- .gray[Laziness]
+
+]]
+
+.rightcol-medium[
+```
+list = map(fn, otherList)
+```
+]
+
+
+---
+class: middle, larger-img
+
+### funksjonen som byggesten  
+
+&nbsp;
+
+.leftcol-medium[.no-bullets[
+
+- Høyere ordens funksjoner
+- .gray[Anonyme funksjoner]
+- .gray[Komponering av funksjoner]
+- .gray[Partial application]
+- .gray[Laziness]
+
+]]
+
+.rightcol-medium[
+```
+list = []
+for (item in otherList)
+  list.append(fn(item))
+end  
+```
+]
+
+
+
+---
+class: middle, larger-img
+
+### funksjonen som byggesten  
+
+&nbsp;
+
+.leftcol-medium[.no-bullets[
+
+- .gray[Høyere ordens funksjoner]
+- Anonyme funksjoner
+- .gray[Komponering av funksjoner]
+- .gray[Partial application]
+- .gray[Laziness]
+
+]]
+
+.rightcol-medium[.middle[
+```
+bigThings = 
+    map(λ x: x > 1000, items)
+```
+]]
+
+---
+class: middle, larger-img
+
+### funksjonen som byggesten  
+
+&nbsp;
+
+.leftcol-medium[.no-bullets[
+
+- .gray[Høyere ordens funksjoner]
+- .gray[Anonyme funksjoner]
+- Komponering av funksjoner
+- .gray[Partial application]
+- .gray[Laziness]
+
+]]
+
+.rightcol-medium[
+```
+isOdd = not o isEven
+```
+]
+
+---
+class: middle, larger-img
+
+### funksjonen som byggesten  
+
+&nbsp;
+
+.leftcol-medium[.no-bullets[
+
+- .gray[Høyere ordens funksjoner]
+- .gray[Anonyme funksjoner]
+- .gray[Komponering av funksjoner]
+- Partial application
+- .gray[Laziness]
+
+]]
+
+.rightcol-medium[
+```
+plussMoms = (*) 1.25
+```
+]
+
+---
+class: middle, larger-img
+
+### funksjonen som byggesten  
+
+&nbsp;
+
+.leftcol-medium[.no-bullets[
+
+- .gray[Høyere ordens funksjoner]
+- .gray[Anonyme funksjoner]
+- .gray[Komponering av funksjoner]
+- .gray[Partial application]
+- Laziness
+
+]]
+
+.rightcol-medium[
+```
+λ» take 5 $ filter prime [100..]
+[101, 103, 107, 109, 113]
+```
+]
+
+
+---
+class: middle
+
+### ikke-muterbar tilstand
+
+&nbsp;
+
+.leftcol-medium[
+**"Negative features"**
+
+- ingen side-effekter
+- ingen (re)assignments
+- ingen eksplisitt kontrollflyt
+]
+
+---
+class: middle
+
+### ikke-muterbar tilstand
+
+&nbsp;
+
+.leftcol-medium[.gray[
+**"Negative features"**
+
+- ingen side-effekter
+- ingen (re)assignments
+- ingen eksplisitt kontrollflyt
+]]
+
+.rightcol-medium[
+**Fordeler**
+
+- enklere å teste
+- enklere å resonere med
+- enkelt å parallellisere
+]
+
+---
+class: center, middle
+
+![Plot over ulike programmeringspråk plassert på aksene funksjoner og tilstand](img/plot-languages.png)
+
+---
+class: middle
+
+> **Hughes, John. [Why functional programming matters.]( http://www.cse.chalmers.se/edu/year/2010/course/TDA341/Papers/whyfp.pdf)**   
+> The computer journal 32.2 (1989): 98-107.
+
+---
+class: center, middle, inverse
+
+# **Praktisk** 
+### om opplegget
+
+---
+class: center, middle
+
+Kl 18 har vi mat på Håndverkerstuene.
+
+Vi har litt snacks i mellomtiden.
+
+---
+class: middle
+
+## [github.com/bekkopen/funksjonell-js](http://github.com/bekkopen/funksjonell-js)
+
+1. Klon og åpne `dag1/1_intro.js`  
+2. Spør når du trenger hjelp
+3. ??? .gray[*hint: innvolverer koding*]
+4. Middag!
+
+    </textarea>
+    <script src="remark.min.js" type="text/javascript"></script>
+  <!--<script src="http://gnab.github.com/remark/downloads/remark-0.5.5.min.js" type="text/javascript"></script>-->
+    <script type="text/javascript">
+      var slideshow = remark.create({
+          highlightStyle: 'monokai',
+          highlightLanguage: 'no-highlight'
+        }) ;
+    </script>
+  </body>
+</html>
