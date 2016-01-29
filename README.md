@@ -1,1 +1,1 @@
-[Workshop](http://mollerse.github.io/functional-js/workshop/)
+[Workshop](http://bekk.github.io/functional-js/workshop/)
