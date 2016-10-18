@@ -117,7 +117,7 @@ describe('pairOn', function() {
   it('should give the correct object when called with _.object', function() {
     var result = _.object(pairOn('=', values));
 
-    expect(result).to.deepEqual(parsedUrl);
+    expect(result).to.deep.equal(parsedUrl);
   });
 });
 
@@ -133,7 +133,7 @@ describe('parseUrl', function() {
   it('should give the correct object when called', function() {
     var result = parseUrl(url);
 
-    expect(result).to.deepEqual(parsedUrl);
+    expect(result).to.deep.equal(parsedUrl);
   });
 });
 
@@ -150,7 +150,7 @@ var composedParseUrl = _.compose(
 describe('composedParseUrl', function() {
   it('should give the correct object when called', function() {
     var result = composedParseUrl(url);
-    expect(result).to.deepEqual(parsedUrl);
+    expect(result).to.deep.equal(parsedUrl);
   });
 });
 
