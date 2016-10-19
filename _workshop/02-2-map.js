@@ -83,4 +83,10 @@ describe('addIndex', function() {
     expect(result).to.deep.equal([1,3,5]);
     expect(numbers).to.not.equal(result);
   });
+  
+   it('should work with duplicate elements in the collection', function() {
+    var numbers = [1,2,2];
+    var result = addIndex(numbers);
+    expect(result).to.deep.equal([1,3,4]);
+  });
 });
